@@ -1,0 +1,2948 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark" />
+
+      
+      <meta name="author" content="Ascendient, LLC">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet" media="print">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj+VczCZtlzBcjt5ppRcsAmDnRem7ESsYwWwg3m/OaJ2l4x7YBZl9Kxxib" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  
+  
+  <style>
+    @media print {
+      @font-face {
+        font-family: 'NotoColorEmoji';
+        src: url('https://raw.githubusercontent.com/googlefonts/noto-emoji/main/fonts/NotoColorEmoji.ttf');
+      }
+    }
+
+    @page {
+      @top-left { content: "WA3546-CAP ADP Data Program Projects"; }
+      @top-right { content: "Lab Guide"; }
+    }
+  </style>
+  <style>
+    :root {
+  /*
+    Ascendient Digital Palette
+    --------------------------
+    White - Components BG / Text
+    Sand+ - Background / Text
+    Dark Sand - Secondary Background
+    Warm Sand - Text Color
+    Clay - Primary CTA color
+    Burgundy - Secondary BG / Text
+    Orange - Stylus visuals / Accents
+    Smart Blue - Stylus visuals / Accents
+  */
+  --ascendient-logo: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20id%3D%22Layer_2%22%20version%3D%221.1%22%20viewBox%3D%220%200%203540.6%20826.8%22%3E%3Cdefs%3E%3Cstyle%3E.st0%7Bfill%3A%23fff%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22Layer_1-2%22%3E%3Cpath%20d%3D%22M529.9%20468.3v126.2H492v-19.1c-12.5%2014.7-31.3%2022.8-54.5%2022.8-39%200-70.3-25.8-70.3-60.3s30.5-55.6%2077.3-55.6h44.9v-16.9c0-24.7-7.7-34.2-37.2-34.2s-38.3%209.2-39.4%2035.3h-40.5c5.1-37.5%2037.5-68.8%2081.7-68.8s75.8%2028.7%2075.8%2070.7Zm-40.5%2065.1v-20.2h-54.1c-17.3%200-25.4%206.6-25.4%2019.5V543c0%2015.5%2010.3%2022.5%2036.1%2022.5s43.4-9.6%2043.4-32ZM550.1%20535.6h42c1.5%2022.8%2011.4%2029.4%2042.3%2029.4s40.1-7%2040.1-21.7v-7.4c0-11.8-7.4-16.6-27.6-18.8l-32-2.9c-35.3-3.3-58.1-23.5-58.1-54.1s35-62.6%2075.8-62.6%2075.1%2023.9%2080.2%2061.8h-42.3c-.7-21.7-9.9-28.7-37.5-28.7s-35.7%206.2-35.7%2021v6.6c0%2011.4%207%2016.9%2024.7%2018.8l35.7%203.7c35.7%203.7%2057.8%2023.5%2057.8%2053.4s-35%2064-80.2%2064-80.6-25.4-85-62.6ZM730.8%20497.7c0-56.7%2039.4-100.1%2091.6-100.1s81%2032.4%2088.3%2078h-43.8c-2.2-31.3-14.3-42.3-45.3-42.3S776%20448%20776%20482.2v30.9c0%2034.6%2013.6%2049.7%2045.6%2049.7s43.1-11.8%2045.3-43.1h43.8c-7.4%2046-44.2%2078.4-88.3%2078.4s-91.6-43.4-91.6-100.5ZM973.6%20509.5v9.2c0%2032%2014.7%2045.3%2048.9%2045.3s42.3-8.8%2044.5-30.5h44.5c-11.8%2036.8-48.9%2064.8-88.7%2064.8S929%20558.5%20929%20500.8s39.8-103%2094.2-103%2089.1%2042.7%2089.1%2096.4v15.5H973.6Zm0-35.3v4.4h93.8v-4.4c0-30.5-12.1-43.1-44.2-43.1s-49.7%2012.9-49.7%2043.1ZM1310.3%20473.8v120.7h-41.6V471.6c0-26.1-12.9-37.9-42.3-37.9s-44.2%2012.1-44.2%2039.8v121.1h-41.6V401.4h38.6v28c14.7-20.2%2036.8-31.6%2062.2-31.6%2039.4%200%2068.8%2032%2068.8%2076.2ZM1515.3%20330.3v264.2h-39v-26.1c-13.2%2017.7-37.2%2029.8-59.6%2029.8-48.2%200-87.2-44.9-87.2-99.7s39.4-100.8%2088.7-100.8%2041.6%209.2%2055.6%2026.1v-93.5h41.6Zm-41.6%20152c0-34.2-15.1-48.9-49.7-48.9s-49.3%2014.7-49.3%2048.9v30.9c0%2034.6%2015.1%2049.7%2049.3%2049.7s49.7-15.1%2049.7-49.7v-30.9ZM1533.7%20351.2c0-16.9%2012.1-28.3%2029.1-28.3s28.7%2011.4%2028.7%2028.3-12.1%2028.3-28.7%2028.3-29.1-11.8-29.1-28.3Zm8.5%2050.1h41.6v193.2h-41.6V401.3ZM1651.8%20509.5v9.2c0%2032%2014.7%2045.3%2048.9%2045.3s42.3-8.8%2044.5-30.5h44.5c-11.8%2036.8-48.9%2064.8-88.7%2064.8s-93.8-39.8-93.8-97.5%2039.8-103%2094.2-103%2089.1%2042.7%2089.1%2096.4v15.5h-138.7Zm0-35.3v4.4h93.8v-4.4c0-30.5-12.1-43.1-44.2-43.1s-49.7%2012.9-49.7%2043.1ZM1981.5%20473.8v120.7h-41.6V471.6c0-26.1-12.9-37.9-42.3-37.9s-44.2%2012.1-44.2%2039.8v121.1h-41.6V401.4h38.6v28c14.7-20.2%2036.8-31.6%2062.2-31.6%2039.4%200%2068.8%2032%2068.8%2076.2ZM2028.3%20537.8V435.9h-40.1v-34.6h40.1v-71h41.2v71h52.3v34.6h-52.3v104.2c0%2012.5%206.6%2018.8%2019.1%2018.8h29.4v37.5h-27.2c-38.3%200-62.6-22.8-62.6-58.5ZM241.5%2089.1l74.4%2052.3L212.7%208.8c-1.1-1.5-2.9-2.2-4.6-2.2s-2.7.5-3.8%201.4l-17%2014.6c-2.5%202.1-2.7%206-.5%208.4l54.7%2058.1ZM124.8%2082.3l103.5%2059.1%2050.5%2016.5%2019.9%206.5%2019.9%206.5%208.5%202.8-17.5-12.2-40.6-28.6-40.6-28.6-81.3-57.1c-1.2-.8-2.6-1.2-4-1.2-2.4%200-4.7%201.2-6.1%203.3l-14.6%2023c-2.1%203.4-1.1%207.9%202.4%2010ZM70.7%20164.3l163%2036.8%2060.7%201.1%2020.9.4h5.7l15.2.4h2l11.9.3h3.3l-2.8-.9-8.5-2.8-11.2-3.6-3.8-1.2-12.8-4.2-7.1-2.3-40.2-13.1-47.2-15.4-135.9-44.4c-.9-.3-1.7-.4-2.6-.4-3.8%200-7.3%202.5-8.4%206.4l-8.8%2032.1c-1.3%204.7%201.6%209.6%206.4%2010.8ZM36.3%20279.1h.6l225-16.8%2067.2-19.2%2020.1-5.7%2020.1-5.7%206.1-1.7%2011.2-3.2%209-2.6h-8.3c0-.1-10.3-.3-10.3-.3l-16-.3-30.3-.6h-.1l-49.6-1-49.6-1-196.1-3.7c-6%200-10.8%204.9-10.6%2010.9l1.1%2040.6c.2%205.8%204.9%2010.3%2010.6%2010.3ZM38.4%20425.2l276.7-107.8%2068.1-44.1%2017.5-11.3%2024.8-16.1%209.8-6.4%2016.3-10.5-16.4%204.7-9.9%202.8-9.9%202.8-23.7%206.7-21.8%206.2-9%202.6-47.7%2013.6-47.7%2013.6-251.1%2071.7c-7%202.1-10.9%209.6-8.6%2016.5l15.8%2046.9c1.8%205.4%206.9%208.8%2012.3%208.8s3-.3%204.5-.8ZM483%20232.6l-8.7%205.6-8.6%205.6-29.6%2019.1-11.2%207.2-17.3%2011.2-41.7%2027-41.7%2027L38.8%20520.2c-7.4%205-9.2%2015.1-4%2022.3l35.1%2049.1c3.1%204.3%207.9%206.6%2012.8%206.6s6.7-1%209.6-3.2l443.4-350-22.7-31.8-30%2019.4ZM1515.3%20649.2h16.7v136.4h-16.7V649.2ZM1561.3%20740.9v4.4c0%2019.4%208.6%2027.4%2028.7%2027.4s23.4-5.3%2024.9-17.7h19.4c-6.7%2018.8-25.7%2032.5-44.3%2032.5-27.2%200-47.3-20.5-47.3-49.6s20.3-53.6%2047.3-53.6%2044.7%2021.7%2044.7%2049.6v7h-73.3Zm0-16.1v2.1h54.7v-2.5c0-17.9-7-25.3-25.8-25.3s-28.9%207.8-28.9%2025.7ZM1724.9%20720.8v64.8h-15.8v-11.2c-6.1%208.4-16.5%2013.1-29.4%2013.1-19.9%200-35.7-13.7-35.7-30.8s15.2-27.9%2036.7-27.9h27.6v-8.9c0-15-4.9-20.7-21.5-20.7s-22.4%205.5-23.2%2020.7h-17.1c3.2-20.5%2019.8-35.5%2040.8-35.5s37.6%2014.6%2037.6%2036.5Zm-16.7%2034.4v-12.3h-32.3c-9.3%200-13.9%203.8-13.9%2011.2v5.3c0%209.3%206.3%2013.3%2021.1%2013.3s25.1-5.3%2025.1-17.5ZM1791.2%20684.3v21.1h-15.4c-13.5%200-19.6%206.1-19.6%2019.6v60.6h-16.7v-99.4h15.8v18.6c7.8-11.4%2020.5-18.6%2035.9-20.5ZM1885.4%20723.5v62.1h-16.7v-64c0-15.8-7.4-22.4-24.3-22.4s-25.7%207-25.7%2023.4v63.1H1802v-99.4h15.8v14.8c7.6-10.6%2018.8-16.7%2031.7-16.7%2020.7%200%2035.9%2016.2%2035.9%2039.1ZM1897.2%20660.9c0-7.6%205.5-12.9%2012.9-12.9s12.7%205.3%2012.7%2012.9-5.5%2012.9-12.7%2012.9-12.9-5.5-12.9-12.9Zm4.5%2025.3h16.7v99.4h-16.7v-99.4ZM2019.7%20723.5v62.1H2003v-64c0-15.8-7.4-22.4-24.3-22.4s-25.7%207-25.7%2023.4v63.1h-16.7v-99.4h15.8v14.8c7.6-10.6%2018.8-16.7%2031.7-16.7%2020.7%200%2035.9%2016.2%2035.9%2039.1ZM2121.7%20686.2v102.2c0%2020.9-17.7%2038.4-43.7%2038.4s-44.1-17.7-44.5-37.4h17.1c.2%2016.9%207%2022.6%2027.4%2022.6s27-6.8%2027-25.5v-19.2c-8.6%209.5-19.2%2014.4-30.8%2014.4-24.9%200-43.9-21.1-43.9-49s18.8-48.3%2044.1-48.3%2024.9%206.5%2031.5%2015.8v-14.1h15.8Zm-16.7%2052.5v-11.8c0-19.4-8.4-27.5-27.9-27.5s-28.3%208.2-28.3%2027.5v11.8c0%2020%208.6%2028.5%2028.3%2028.5s27.9-8.5%2027.9-28.5Z%22%20class%3D%22st0%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M2493.5%20398.1h45.6c7.9%200%2015.1.9%2021.6%202.7%206.5%201.8%2012%204.5%2016.6%208.1%204.6%203.6%208.1%208.2%2010.6%2013.6%202.5%205.5%203.8%2011.9%203.8%2019.3v.8c0%207.5-1.3%2014-3.9%2019.4s-6.1%209.9-10.7%2013.4-10.1%206.1-16.5%207.8c-6.4%201.7-13.4%202.6-20.9%202.6h-19.8V540h-26.4V398.1Zm45.6%2068.8c8.7%200%2015.4-2.1%2019.9-6.1%204.6-4.1%206.9-10.1%206.9-18v-.8c0-8.5-2.4-14.5-7-18-4.7-3.6-11.3-5.4-19.7-5.4H2520V467h19.2ZM2638.3%20541.9c-4.8%200-9.3-.6-13.5-1.8-4.2-1.2-7.9-3-11-5.5-3.1-2.4-5.6-5.6-7.4-9.5-1.9-3.9-2.8-8.6-2.8-14s1.4-11.2%204.2-15.4c2.8-4.2%206.6-7.5%2011.3-10.1%204.8-2.6%2010.4-4.5%2016.9-5.7%206.5-1.2%2013.4-1.8%2020.8-1.8h12.9v-5.4c0-7.1-1.4-12.3-4.1-15.8-2.7-3.5-7.6-5.2-14.8-5.2s-11.1%201.4-14.2%204.3c-3.1%202.9-5%206.9-5.7%2012.1h-23.2c.5-6.1%202.1-11.3%204.6-15.6%202.5-4.3%205.8-7.8%209.7-10.6%204-2.8%208.5-4.8%2013.7-6.1s10.6-2%2016.5-2%2011.2.6%2016.3%201.9c5%201.3%209.4%203.4%2013.2%206.4%203.8%203%206.7%206.9%208.8%2011.7%202.1%204.8%203.2%2010.8%203.2%2018v68.1h-23.6v-12.7c-3.4%204.5-7.6%208.1-12.5%2010.7s-11.3%204-19.2%204Zm5.8-17.3c7.4%200%2013.5-1.8%2018.4-5.5s7.2-8.8%207.2-15.6v-10.3h-12.3c-9.1%200-16.4%201.2-21.8%203.7-5.4%202.5-8.1%206.9-8.1%2013.2s1.3%207.9%203.9%2010.5c2.6%202.7%206.9%204%2012.8%204ZM2722.1%20436.1h24v19.5c3.3-6.6%207.6-11.7%2012.8-15.4%205.2-3.6%2012.2-5.5%2020.9-5.7v22.4c-5.3%200-10%20.5-14.2%201.5-4.2%201-7.7%202.6-10.6%204.9-2.9%202.2-5.1%205.2-6.6%208.8-1.5%203.6-2.3%208.2-2.3%2013.8v54h-24V436.1ZM2837.9%20541.7c-10.3%200-18.1-2.7-23.4-8-5.3-5.3-7.9-12.9-7.9-22.9v-56.9h-13.9V436h13.9v-22.8h24V436h22.8v17.9h-22.8v54.5c0%204.6%201%208%203.1%2010.1%202.1%202.1%205%203.2%208.8%203.2s8.5-.7%2011.7-2v19.2c-1.9.7-4.1%201.3-6.8%201.8-2.6.5-5.8.8-9.5.8ZM2970.8%20541.9c-7.7%200-14.8-1.2-21.2-3.8-6.5-2.5-12.1-6.1-16.9-10.7-4.8-4.6-8.5-10.2-11.1-16.7-2.6-6.5-4-13.7-4-21.6v-1.6c0-8.1%201.4-15.4%204.1-21.9%202.7-6.5%206.4-12.2%2011.2-16.9%204.8-4.7%2010.4-8.3%2016.9-10.9%206.5-2.6%2013.6-3.9%2021.2-3.9s14.6%201.2%2021%203.8c6.5%202.5%2012.1%206.1%2016.9%2010.8%204.8%204.7%208.5%2010.3%2011.2%2016.8%202.7%206.5%204.1%2013.7%204.1%2021.6v1.6c0%208.1-1.4%2015.4-4.1%2021.9-2.7%206.5-6.4%2012.2-11.2%2016.9-4.8%204.7-10.4%208.3-16.9%2010.8-6.5%202.5-13.6%203.8-21.2%203.8Zm.2-18.9c9%200%2016-3.1%2021-9.2s7.5-14.5%207.5-25.2v-1.4c0-10.7-2.5-19.1-7.5-25.2-5-6.1-12-9.2-21-9.2s-16%203-21.1%209.1c-5.1%206.1-7.6%2014.5-7.6%2025.1v1.6c0%2010.7%202.5%2019.1%207.5%2025.2%205%206.1%2012.1%209.2%2021.2%209.2ZM3050.8%20454h-14.1v-17.9h14.1v-13.9c0-11.5%203-20.2%209-26.2s14.6-8.9%2025.9-8.9%205.4.2%207.3.5c2%20.3%204.1.8%206.4%201.5v18.6c-1.5-.5-3.1-1-4.9-1.3-1.8-.3-3.8-.5-6.1-.5-4.9%200-8.4%201.4-10.5%204.3-2.1%202.9-3.2%206.5-3.2%2011v14.9h23.6V454h-23.6v85.9h-24V454ZM2531.7%20614.8h52.6l45%20141.8h-43.1l-7.5-26.4h-47l-7.5%2026.4h-37.9l45.4-141.8Zm7.9%2087.5h31.1l-15.5-54.6-15.7%2054.6ZM2689%20759.1c-7.8%200-15-1.1-21.6-3.4-6.6-2.2-12.4-5.6-17.3-10.1-4.9-4.4-8.7-9.8-11.5-16.5-2.8-6.6-4.2-14.3-4.2-23v-1.6c0-8.6%201.4-16.3%204.4-23%202.9-6.7%206.9-12.4%2011.9-17.1%205-4.6%2010.9-8.2%2017.6-10.6%206.7-2.4%2013.9-3.7%2021.5-3.7s12.5.7%2018.4%202.2c5.9%201.5%2011.1%203.8%2015.8%207.1%204.6%203.4%208.4%207.9%2011.4%2013.3s4.7%2012.1%205.3%2020h-33.3c-.8-4.9-2.5-8.6-5.1-11.2-2.6-2.6-6.4-3.9-11.6-3.9s-11.2%202.2-14.7%206.7c-3.4%204.4-5.2%2011-5.2%2019.7v1.6c0%209.1%201.7%2016%205.2%2020.5%203.4%204.6%208.5%206.8%2015.3%206.8s9.1-1.5%2012.3-4.4c3.2-2.9%205.1-7.2%205.8-12.9h31.9c-.5%2013.1-5.2%2023.6-13.9%2031.5s-21.5%2011.8-38.3%2011.8ZM2806.3%20759.1c-7.8%200-15-1.1-21.6-3.4-6.6-2.2-12.4-5.6-17.3-10.1-4.9-4.4-8.7-9.8-11.5-16.5-2.8-6.6-4.2-14.3-4.2-23v-1.6c0-8.6%201.4-16.3%204.4-23%202.9-6.7%206.9-12.4%2011.9-17.1%205-4.6%2010.9-8.2%2017.6-10.6%206.7-2.4%2013.9-3.7%2021.5-3.7s12.5.7%2018.4%202.2c5.9%201.5%2011.1%203.8%2015.8%207.1%204.6%203.4%208.4%207.9%2011.4%2013.3s4.7%2012.1%205.3%2020h-33.3c-.8-4.9-2.5-8.6-5.1-11.2-2.6-2.6-6.4-3.9-11.6-3.9s-11.2%202.2-14.7%206.7c-3.4%204.4-5.2%2011-5.2%2019.7v1.6c0%209.1%201.7%2016%205.2%2020.5%203.4%204.6%208.5%206.8%2015.3%206.8s9.1-1.5%2012.3-4.4c3.2-2.9%205.1-7.2%205.8-12.9h31.9c-.5%2013.1-5.2%2023.6-13.9%2031.5s-21.5%2011.8-38.3%2011.8ZM2925.3%20759.1c-8.2%200-15.7-1.2-22.6-3.5-6.9-2.3-12.8-5.7-17.7-10.2-5-4.5-9-10-11.8-16.7-2.9-6.6-4.3-14.2-4.3-22.6v-1.6c0-8.3%201.4-15.8%204.4-22.5%202.9-6.7%206.9-12.4%2011.9-17.2%205-4.8%2011-8.4%2017.9-10.9%206.9-2.5%2014.2-3.8%2022-3.8s13.9%201.1%2020.2%203.2c6.4%202.1%2012%205.4%2016.9%209.7%204.8%204.4%208.6%209.9%2011.4%2016.7%202.8%206.8%204.3%2014.8%204.3%2024v9.3h-73c.5%206.9%202.7%2012.2%206.4%2016%203.8%203.8%208.8%205.7%2015.2%205.7s10.3-1.2%2013-3.6%204.4-5.3%205.1-8.7h33.3c-1.6%2011.8-6.8%2020.8-15.7%2027.2-8.9%206.3-21.2%209.5-36.9%209.5Zm18.1-66.1c-.3-6.3-1.9-11.2-5-14.5-3-3.3-7.5-5-13.3-5s-9.9%201.7-13.3%205c-3.4%203.3-5.6%208.1-6.6%2014.5h38.1ZM2994.7%20652.9h35.5v16.8c2.8-5.5%207-10.1%2012.6-13.9%205.6-3.8%2012.8-5.7%2021.5-5.7s18.2%203.2%2024.5%209.6c6.3%206.4%209.4%2016.2%209.4%2029.5v67.5h-35.5v-60.2c0-5.9-1.2-10.3-3.6-13.2-2.4-2.8-6.1-4.2-11.3-4.2s-9.6%201.6-12.8%204.8-4.9%208.1-4.9%2014.8v58h-35.5V652.9ZM3161.4%20759.1c-11.8%200-20.8-2.9-27.1-8.6-6.3-5.8-9.4-14.8-9.4-27.1v-46.2h-12.5V653h12.5v-21.6h35.5V653h20.4v24.2h-20.4V720c0%203.6.9%206.3%202.7%208.1s4.4%202.8%207.8%202.8%203.8-.1%205.4-.4c1.6-.3%203.2-.7%204.8-1.4v27c-2.2.7-5%201.3-8.3%202-3.3.7-7.1%201-11.3%201ZM3233%20759.1c-5%200-9.6-.8-13.9-2.3-4.2-1.5-7.9-3.9-10.9-7-3.2-3.2-5.7-7.2-7.4-12-1.8-4.8-2.7-10.5-2.7-17.2v-67.7h35.5v61.9c0%205.8%201.2%2010.2%203.7%2013.1%202.4%202.9%206.1%204.4%2011%204.4s9.7-1.6%2012.9-4.8c3.2-3.2%204.8-8.1%204.8-14.9v-59.7h35.5v103.8H3266v-16.1c-2.8%205.4-6.8%209.8-12%2013.3-5.2%203.4-12.2%205.2-20.9%205.2ZM3324.1%20652.9h35.5v20.6c3.3-7.8%207.7-13.5%2013.2-17%205.5-3.5%2012.3-5.2%2020.3-5.1v33.1c-10.8-.3-19.1%201.4-24.9%205-5.8%203.6-8.6%209.5-8.6%2017.8v49.2h-35.5V652.7ZM3460.4%20759.1c-8.2%200-15.7-1.2-22.6-3.5-6.9-2.3-12.8-5.7-17.7-10.2-5-4.5-9-10-11.8-16.7-2.9-6.6-4.3-14.2-4.3-22.6v-1.6c0-8.3%201.4-15.8%204.4-22.5%202.9-6.7%206.9-12.4%2011.9-17.2%205-4.8%2011-8.4%2017.9-10.9%206.9-2.5%2014.2-3.8%2022-3.8s13.9%201.1%2020.2%203.2c6.4%202.1%2012%205.4%2016.9%209.7%204.8%204.4%208.6%209.9%2011.4%2016.7%202.8%206.8%204.3%2014.8%204.3%2024v9.3h-73c.5%206.9%202.7%2012.2%206.4%2016%203.8%203.8%208.8%205.7%2015.2%205.7s10.3-1.2%2013-3.6%204.4-5.3%205.1-8.7h33.3c-1.6%2011.8-6.8%2020.8-15.7%2027.2-8.9%206.3-21.2%209.5-36.9%209.5Zm18-66.1c-.3-6.3-1.9-11.2-5-14.5-3-3.3-7.5-5-13.3-5s-9.9%201.7-13.3%205c-3.4%203.3-5.6%208.1-6.6%2014.5h38.1Z%22%20class%3D%22st0%22%2F%3E%3C%2Fsvg%3E");
+  --white: #ffffff;
+  --sand: #faf5ed;
+  --warm-sand: #e4c7c2;
+  --clay: #5c1726;
+  --burgundy: #380a14;
+  --bright-orange: #ff6b00;
+  --smart-blue: #2e1aa6;
+  --sand-plus: #fcf7f2;
+  --dark-sand: #f6ebdf;
+
+  /* ---------- [ Sizing ] ---------- */
+  --padding-xxl: 10rem;
+  --padding-xl: 8rem;
+  --padding-lg: 5rem;
+  --padding-md: 3rem;
+  --padding-sm: 2rem;
+  --padding-xs: 1rem;
+  --padding-min: 0.25rem;
+
+  --radius-large: 12px; /* Large elements, e.g. background containers */
+  --radius-medium: 10px; /* Medium elements, e.g. medium sized cards */
+  --radius-small: 8px; /* Small elements, e.g. small cards */
+  --radius-xsmall: 4px; /* Extra small elements, e.g. buttons */
+
+    /*
+    Ascendient Typography
+    ---------------------
+    Sizes have been converted to rem units.
+
+    | Element | Name       |
+    |---------|------------|
+    | H1      | Headline L |
+    | H2      | Title L    |
+    | H3      | Title M    |
+    | H4      | Title S    |
+    | H5      | Title XS   |
+
+    | Name       | Face    | Size | Line Height
+    |------------|---------|------|------------
+    | Headline L | Karelia | 64   | 105%
+    | Headline M | Karelia | 60   | 105%
+    | Headline S | Karelia | 52   | 105%
+    | Title L    | Karelia | 30   | 105%
+    | Title M    | Karelia | 22   | 100%
+    | Title S    | Karelia | 19   | 115%
+    | Title XS   | DM Sans | 18   | 100%
+    | Body L     | DM Sans | 16   | 125%
+    | Body M     | DM Sans | 15   | 140%
+    | Body S     | DM Sans | 14   | 124%
+    | DM Sans |
+    Headline Large - Karelia
+  */
+  --font-primary: "DM Sans", sans-serif;
+  --font-secondary: "Karelia Web Black", "DM Sans", sans-serif;
+  --size-headline-l: 4rem; /* 64px */
+  --size-headline-m: 3.75rem; /* 60px */
+  --size-headline-s: 3.25rem; /* 52px */
+  --size-title-xl: 2.25rem; /* 36px */
+  --size-title-l: 1.875rem; /* 30px */
+  --size-title-m: 1.375rem; /* 22px */
+  --size-title-s: 1.1875rem; /* 19px */
+  --size-title-xs: 1.125rem; /* 18px */
+  --size-body-l: 1rem; /* 16px */
+  --size-body-m: 0.9375rem; /* 15px */
+  --size-body-s: 0.875rem; /* 14px */
+}
+
+
+:root, [data-theme="light"] {
+  color-scheme: light;
+  --bgColor-attention-muted: #fff8c5;
+  --bgColor-default: var(--white);
+  --bgColor-intense: var(--clay);
+  --bgColor-muted: var(--dark-sand);
+  --bgColor-light: var(--sand);
+  --bgColor-dark: #160408;
+  --bgColor-neutral-muted: var(--sand-plus);
+  --borderColor-accent-emphasis: #0969da;
+  --borderColor-attention-emphasis: #9a6700;
+  --borderColor-danger-emphasis: #cf222e;
+  --borderColor-default: #3c071266;
+  --borderColor-done-emphasis: #8250df;
+  --borderColor-muted: #3c071233;
+  --borderColor-neutral-muted: #d1d9e0b3;
+  --borderColor-success-emphasis: #1a7f37;
+  --fgColor-info: #0969da;
+  --fgColor-attention: #9a6700;
+  --fgColor-danger: #d1242f;
+  --fgColor-default: var(--burgundy);
+  --fgColor-done: #8250df;
+  --fgColor-intense: var(--sand);
+  --fgColor-muted: #59636e;
+  --fgColor-success: #1a7f37;
+  --focus-outlineColor: #0969da;
+
+  --fgColor-accent: var(--clay);
+  --fgColor-accent-light: var(--warm-sand);
+  --fgColor-accent-bold: var(--bright-orange);
+  --logo-color: var(--burgundy);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bgColor-attention-muted: #bb800926;
+  --bgColor-default: #0d1117;
+  --bgColor-intense: #000;
+  --bgColor-muted: #151b23;
+  --bgColor-light: #1f2937;
+  --bgColor-dark: #000;
+  --bgColor-neutral-muted: #656c7633;
+  --borderColor-accent-emphasis: #1f6feb;
+  --borderColor-attention-emphasis: #9e6a03;
+  --borderColor-danger-emphasis: #da3633;
+  --borderColor-default: #3d444d;
+  --borderColor-done-emphasis: #8957e5;
+  --borderColor-muted: #3d444db3;
+  --borderColor-neutral-muted: #3d444db3;
+  --borderColor-success-emphasis: #238636;
+  --fgColor-info: #4493f8;
+  --fgColor-attention: #d29922;
+  --fgColor-danger: #f85149;
+  --fgColor-default: #f0f6fc;
+  --fgColor-done: #ab7df8;
+  --fgColor-intense: #c9d1d9;
+  --fgColor-muted: #9198a1;
+  --fgColor-success: #3fb950;
+  --focus-outlineColor: #1f6feb;
+
+  --fgColor-accent: var(--clay);
+  --fgColor-accent-light: var(--warm-sand);
+  --fgColor-accent-bold: var(--bright-orange);
+
+  --logo-color: var(--white)
+}
+
+/* ---------- [ Reset ] ---------- */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+
+/* Stop errors from having a red background/border */
+.err {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+
+/* ---------- [ Typography ] ---------- */
+.quoteblock {
+  margin: 0 0 var(--padding-sm);
+  padding: 0 1em;
+  border-left: 0.25em solid var(--borderColor-default);
+
+  blockquote {
+    margin: 0 0 var(--padding-min);
+    padding: 0;
+
+    p {
+      margin: 0;
+
+      &:first-child:before, &:last-child:after {
+        content: "";
+        color: var(--fgColor-accent-bold);
+        font-family: 'Phosphor';
+        display: inline-block;
+        padding-left: 0.5em;
+      }
+
+      &:before {
+        transform: scale(-1, 1);
+      }
+    }
+  }
+
+  & > p {
+    color: var(--fgColor-muted);
+    font-size: 0.85em;
+    text-align: right;
+  }
+}
+
+*:not(pre) > code,
+tt {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  white-space: break-spaces;
+  background-color: var(--bgColor-neutral-muted);
+  border: 1px solid var(--borderColor-neutral-muted);
+  border-radius: 6px;
+}
+
+
+/* ---------- [ Custom Blocks ] ---------- */
+    @import url("https://assets.ascendientlearning.com/resources/themes/default/fonts/Ascendient/KareliaWeb-Black.woff2");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+/* FIXME: Remove */
+:root {
+  --base-size-4: 0.25rem;
+  --base-size-8: 0.5rem;
+  --base-size-16: 1rem;
+  --base-size-24: 1.5rem;
+  --base-size-40: 2.5rem;
+  --base-text-weight-normal: 400;
+  --base-text-weight-medium: 500;
+  --base-text-weight-semibold: 600;
+  --fontStack-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, "Noto Sans Mono",
+    monospace;
+}
+
+body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  color: var(--fgColor-default);
+  background-color: var(--bgColor-default);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+/* =============== [ START ] GitHub Markdown Styles [ START ] =============== */
+.octicon {
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+
+h1:hover .anchor .octicon-link:before,
+h2:hover .anchor .octicon-link:before,
+h3:hover .anchor .octicon-link:before,
+h4:hover .anchor .octicon-link:before,
+h5:hover .anchor .octicon-link:before,
+h6:hover .anchor .octicon-link:before {
+  width: 16px;
+  height: 16px;
+  content: " ";
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+}
+
+details,
+figcaption,
+figure {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+a {
+  background-color: transparent;
+  color: var(--fgColor-info);
+  text-decoration: none;
+}
+
+abbr[title] {
+  border-bottom: none;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+
+b,
+strong {
+  font-weight: var(--base-text-weight-semibold, 600);
+}
+
+dfn {
+  font-style: italic;
+}
+
+mark {
+  background-color: var(--bgColor-attention-muted);
+  color: var(--fgColor-default);
+}
+
+small {
+  font-size: 90%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+img {
+  border-style: none;
+  max-width: 100%;
+  box-sizing: content-box;
+  border-radius: var(--radius-small);
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace;
+  font-size: 1em;
+  text-wrap: auto;
+}
+
+figure {
+  margin: 1em var(--base-size-40);
+}
+
+hr {
+  box-sizing: content-box;
+  overflow: hidden;
+  background: transparent;
+  border-bottom: 1px solid var(--borderColor-muted);
+  height: 0.25em;
+  padding: 0;
+  margin: var(--base-size-24) 0;
+  background-color: var(--borderColor-default);
+  border: 0;
+}
+
+input {
+  font: inherit;
+  margin: 0;
+  overflow: visible;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  appearance: button;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.54;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  appearance: button;
+  font: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+::placeholder {
+  color: var(--fgColor-muted);
+  opacity: 1;
+}
+
+hr::before {
+  display: table;
+  content: "";
+}
+
+hr::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-variant: tabular-nums;
+  max-width: 100%;
+  overflow: auto;
+  width: fit-content;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+details summary {
+  cursor: pointer;
+}
+
+a:focus,
+[role="button"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: 2px solid var(--focus-outlineColor);
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+a:focus:not(:focus-visible),
+[role="button"]:focus:not(:focus-visible),
+input[type="radio"]:focus:not(:focus-visible),
+input[type="checkbox"]:focus:not(:focus-visible) {
+  outline: solid 1px transparent;
+}
+
+a:focus-visible,
+[role="button"]:focus-visible,
+input[type="radio"]:focus-visible,
+input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--focus-outlineColor);
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+a:not([class]):focus,
+a:not([class]):focus-visible,
+input[type="radio"]:focus,
+input[type="radio"]:focus-visible,
+input[type="checkbox"]:focus,
+input[type="checkbox"]:focus-visible {
+  outline-offset: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: var(--base-size-4);
+  font: 11px var(--fontStack-monospace);
+  line-height: 10px;
+  color: var(--fgColor-default);
+  vertical-align: middle;
+  background-color: var(--bgColor-muted);
+  border: solid 1px var(--borderColor-neutral-muted);
+  border-bottom-color: var(--borderColor-neutral-muted);
+  border-radius: 6px;
+  box-shadow: inset 0 -1px 0 var(--borderColor-neutral-muted);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: var(--base-size-24);
+  margin-bottom: var(--base-size-16);
+  font-weight: var(--base-text-weight-semibold, 600);
+  line-height: 1.25;
+}
+
+h2 {
+  font-weight: var(--base-text-weight-semibold, 600);
+  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid var(--borderColor-muted);
+}
+
+h3 {
+  font-weight: var(--base-text-weight-semibold, 600);
+  font-size: var(--size-title-l);
+}
+
+h4 {
+  font-weight: var(--base-text-weight-semibold, 600);
+  font-size: var(--size-title-m);
+}
+
+h5 {
+  font-weight: var(--base-text-weight-semibold, 600);
+  font-size: var(--size-title-s);
+}
+
+h6 {
+  font-weight: var(--base-text-weight-semibold, 600);
+  font-size: var(--size-title-xs);
+  font-style: italic;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 2em;
+}
+
+ol ol,
+ul ol {
+  list-style-type: lower-roman;
+}
+
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+dd {
+  margin-left: 0;
+}
+
+tt,
+code,
+samp {
+  font-family: var(--fontStack-monospace);
+  font-size: 12px;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--fontStack-monospace);
+  font-size: 12px;
+  word-wrap: normal;
+}
+
+.octicon {
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.mr-2 {
+  margin-right: var(--base-size-8, 8px) !important;
+}
+
+.markdown-body::before {
+  display: table;
+  content: "";
+}
+
+.markdown-body::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body > *:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.absent {
+  color: var(--fgColor-danger);
+}
+
+.anchor {
+  float: left;
+  padding-right: var(--base-size-4);
+  margin-left: -20px;
+  line-height: 1;
+}
+
+.anchor:focus {
+  outline: none;
+}
+
+p,
+ul,
+ol,
+dl,
+table,
+pre,
+details {
+  margin-top: 0;
+  margin-bottom: var(--base-size-16);
+}
+
+h1 .octicon-link,
+h2 .octicon-link,
+h3 .octicon-link,
+h4 .octicon-link,
+h5 .octicon-link,
+h6 .octicon-link {
+  color: var(--fgColor-default);
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+  text-decoration: none;
+}
+
+h1:hover .anchor .octicon-link,
+h2:hover .anchor .octicon-link,
+h3:hover .anchor .octicon-link,
+h4:hover .anchor .octicon-link,
+h5:hover .anchor .octicon-link,
+h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+h1 tt,
+h1 code,
+h2 tt,
+h2 code,
+h3 tt,
+h3 code,
+h4 tt,
+h4 code,
+h5 tt,
+h5 code,
+h6 tt,
+h6 code {
+  padding: 0 0.2em;
+  font-size: inherit;
+}
+
+summary h1,
+summary h2,
+summary h3,
+summary h4,
+summary h5,
+summary h6 {
+  display: inline-block;
+}
+
+summary h1 .anchor,
+summary h2 .anchor,
+summary h3 .anchor,
+summary h4 .anchor,
+summary h5 .anchor,
+summary h6 .anchor {
+  margin-left: -40px;
+}
+
+summary h1,
+summary h2 {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+ul.no-list,
+ol.no-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+ol[type="a s"] {
+  list-style-type: lower-alpha;
+}
+
+ol[type="A s"] {
+  list-style-type: upper-alpha;
+}
+
+ol[type="i s"] {
+  list-style-type: lower-roman;
+}
+
+ol[type="I s"] {
+  list-style-type: upper-roman;
+}
+
+ol[type="1"] {
+  list-style-type: decimal;
+}
+
+div > ol:not([type]) {
+  list-style-type: decimal;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+li > p {
+  margin-top: var(--base-size-16);
+}
+
+li + li {
+  margin-top: 0.25em;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  padding: 0;
+  margin-top: var(--base-size-16);
+  font-size: 1em;
+  font-style: italic;
+  font-weight: var(--base-text-weight-semibold, 600);
+}
+
+dl dd {
+  padding: 0 var(--base-size-16);
+  margin-bottom: var(--base-size-16);
+}
+
+table th {
+  font-weight: var(--base-text-weight-semibold, 600);
+}
+
+table th,
+table td {
+  padding: 6px 13px;
+  border: 1px solid var(--borderColor-default);
+}
+
+table td {
+  vertical-align: top;
+}
+
+table td > :last-child {
+  margin-bottom: 0;
+}
+
+table tr {
+  background-color: var(--bgColor-default);
+  border-top: 1px solid var(--borderColor-muted);
+}
+
+table tr:nth-child(2n) {
+  background-color: var(--bgColor-muted);
+}
+
+table img {
+  background-color: transparent;
+}
+
+img[align="right"] {
+  padding-left: 20px;
+}
+
+img[align="left"] {
+  padding-right: 20px;
+}
+
+.emoji {
+  max-width: none;
+  vertical-align: text-top;
+  background-color: transparent;
+}
+
+span.frame {
+  display: block;
+  overflow: hidden;
+}
+
+span.frame > span {
+  display: block;
+  float: left;
+  width: auto;
+  padding: 7px;
+  margin: 13px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--borderColor-default);
+}
+
+span.frame span img {
+  display: block;
+  float: left;
+}
+
+span.frame span span {
+  display: block;
+  padding: 5px 0 0;
+  clear: both;
+  color: var(--fgColor-default);
+}
+
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+span.align-center > span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+span.align-center span img {
+  margin: 0 auto;
+  text-align: center;
+}
+
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+span.align-right > span {
+  display: block;
+  margin: 13px 0 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+span.align-right span img {
+  margin: 0;
+  text-align: right;
+}
+
+span.float-left {
+  display: block;
+  float: left;
+  margin-right: 13px;
+  overflow: hidden;
+}
+
+span.float-left span {
+  margin: 13px 0 0;
+}
+
+span.float-right {
+  display: block;
+  float: right;
+  margin-left: 13px;
+  overflow: hidden;
+}
+
+span.float-right > span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+code br,
+tt br {
+  display: none;
+}
+
+del code {
+  text-decoration: inherit;
+}
+
+samp {
+  font-size: 85%;
+}
+
+pre code {
+  font-size: 100%;
+}
+
+pre > code {
+  padding: 0;
+  margin: 0;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+pre,
+code {
+  border-radius: var(--radius-medium);
+}
+
+pre code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+pre code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: #fff6;
+}
+
+pre code,
+pre tt {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+  text-wrap-mode: wrap;
+}
+
+.csv-data td,
+.csv-data th {
+  padding: 5px;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.csv-data .blob-num {
+  padding: 10px var(--base-size-8) 9px;
+  text-align: right;
+  background: var(--bgColor-default);
+  border: 0;
+}
+
+.csv-data tr {
+  border-top: 0;
+}
+
+.csv-data th {
+  font-weight: var(--base-text-weight-semibold, 600);
+  background: var(--bgColor-muted);
+  border-top: 0;
+}
+
+[data-footnote-ref]::before {
+  content: "[";
+}
+
+[data-footnote-ref]::after {
+  content: "]";
+}
+
+.footnotes {
+  font-size: 12px;
+  color: var(--fgColor-muted);
+  border-top: 1px solid var(--borderColor-default);
+}
+
+.footnotes ol {
+  padding-left: var(--base-size-16);
+}
+
+.footnotes ol ul {
+  display: inline-block;
+  padding-left: var(--base-size-16);
+  margin-top: var(--base-size-16);
+}
+
+.footnotes li {
+  position: relative;
+}
+
+.footnotes li:target::before {
+  position: absolute;
+  top: calc(var(--base-size-8) * -1);
+  right: calc(var(--base-size-8) * -1);
+  bottom: calc(var(--base-size-8) * -1);
+  left: calc(var(--base-size-24) * -1);
+  pointer-events: none;
+  content: "";
+  border: 2px solid var(--borderColor-accent-emphasis);
+  border-radius: 6px;
+}
+
+.footnotes li:target {
+  color: var(--fgColor-default);
+}
+
+.footnotes .data-footnote-backref g-emoji {
+  font-family: monospace;
+}
+
+body:has(:modal) {
+  padding-right: var(--dialog-scrollgutter) !important;
+}
+
+[role="button"]:focus:not(:focus-visible),
+[role="tabpanel"][tabindex="0"]:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+summary:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+[tabindex="0"]:focus:not(:focus-visible),
+details-dialog:focus:not(:focus-visible) {
+  outline: none;
+}
+
+g-emoji {
+  display: inline-block;
+  min-width: 1ch;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1em;
+  font-style: normal !important;
+  font-weight: var(--base-text-weight-normal, 400);
+  line-height: 1;
+  vertical-align: -0.075em;
+}
+
+g-emoji img {
+  width: 1em;
+  height: 1em;
+}
+
+.task-list-item {
+  list-style-type: none;
+}
+
+.task-list-item label {
+  font-weight: var(--base-text-weight-normal, 400);
+}
+
+.task-list-item.enabled label {
+  cursor: pointer;
+}
+
+.task-list-item + .task-list-item {
+  margin-top: var(--base-size-4);
+}
+
+.task-list-item .handle {
+  display: none;
+}
+
+.task-list-item-checkbox {
+  margin: 0 0.2em 0.25em -1.4em;
+  vertical-align: middle;
+}
+
+.contains-task-list:hover .task-list-item-convert-container,
+.contains-task-list:focus-within .task-list-item-convert-container {
+  display: block;
+  width: auto;
+  height: 24px;
+  overflow: visible;
+  clip: auto;
+}
+
+.markdown-alert {
+  padding: var(--base-size-8) var(--base-size-16);
+  margin-bottom: var(--base-size-16);
+  color: inherit;
+  border-left: 0.25em solid var(--borderColor-default);
+}
+
+.markdown-alert > :first-child {
+  margin-top: 0;
+}
+
+.markdown-alert > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: var(--base-text-weight-medium, 500);
+  align-items: center;
+  line-height: 1;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--borderColor-accent-emphasis);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--fgColor-info);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--borderColor-done-emphasis);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--fgColor-done);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--borderColor-attention-emphasis);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--fgColor-attention);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--borderColor-success-emphasis);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--fgColor-success);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--borderColor-danger-emphasis);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--fgColor-danger);
+}
+
+.markdown-body > *:first-child > .heading-element:first-child {
+  margin-top: 0 !important;
+}
+/* =============== [ END ] GitHub Markdown Styles [ END ] =============== */
+
+/* =============== [ START ] Pygments Default [ START ] =============== */
+:root, [data-theme="light"] {
+  .highlight .hll { background-color: #ffffcc; }
+  .highlight { background: #f8f8f8; }
+  .highlight .c { color: #2c6565; font-style: italic; } /* Comment */
+  .highlight .err { border: 1px solid #ff0000; } /* Error */
+  .highlight .k { color: #008000; font-weight: bold; } /* Keyword */
+  .highlight .o { color: #666666; } /* Operator */
+  .highlight .ch { color: #2c6565; font-style: italic; } /* Comment.Hashbang */
+  .highlight .cm { color: #2c6565; font-style: italic; } /* Comment.Multiline */
+  .highlight .cp { color: #bc7a00; } /* Comment.Preproc */
+  .highlight .cpf { color: #2c6565; font-style: italic; } /* Comment.PreprocFile */
+  .highlight .c1 { color: #2c6565; font-style: italic; } /* Comment.Single */
+  .highlight .cs { color: #2c6565; font-style: italic; } /* Comment.Special */
+  .highlight .gd { color: #a00000; } /* Generic.Deleted */
+  .highlight .ge { font-style: italic; } /* Generic.Emph */
+  .highlight .gr { color: #ff0000; } /* Generic.Error */
+  .highlight .gh { color: #000080; font-weight: bold; } /* Generic.Heading */
+  .highlight .gi { color: #00a000; } /* Generic.Inserted */
+  .highlight .go { color: #888888; } /* Generic.Output */
+  .highlight .gp { color: #000080; font-weight: bold; } /* Generic.Prompt */
+  .highlight .gs { font-weight: bold; } /* Generic.Strong */
+  .highlight .gu { color: #800080; font-weight: bold; } /* Generic.Subheading */
+  .highlight .gt { color: #0044dd; } /* Generic.Traceback */
+  .highlight .kc { color: #008000; font-weight: bold; } /* Keyword.Constant */
+  .highlight .kd { color: #008000; font-weight: bold; } /* Keyword.Declaration */
+  .highlight .kn { color: #008000; font-weight: bold; } /* Keyword.Namespace */
+  .highlight .kp { color: #008000; } /* Keyword.Pseudo */
+  .highlight .kr { color: #008000; font-weight: bold; } /* Keyword.Reserved */
+  .highlight .kt { color: #b00040; } /* Keyword.Type */
+  .highlight .m { color: #666666; } /* Literal.Number */
+  .highlight .s { color: #930b0b; } /* Literal.String */
+  .highlight .na { color: #7d9029; } /* Name.Attribute */
+  .highlight .nb { color: #008000; } /* Name.Builtin */
+  .highlight .nc { color: #0000ff; font-weight: bold; } /* Name.Class */
+  .highlight .no { color: #880000; } /* Name.Constant */
+  .highlight .nd { color: #aa22ff; } /* Name.Decorator */
+  .highlight .ni { color: #999999; font-weight: bold; } /* Name.Entity */
+  .highlight .ne { color: #d2413a; font-weight: bold; } /* Name.Exception */
+  .highlight .nf { color: #0000ff; } /* Name.Function */
+  .highlight .nl { color: #a0a000; } /* Name.Label */
+  .highlight .nn { color: #0000ff; font-weight: bold; } /* Name.Namespace */
+  .highlight .nt { color: #008000; font-weight: bold; } /* Name.Tag */
+  .highlight .nv { color: #19177c; } /* Name.Variable */
+  .highlight .ow { color: #aa22ff; font-weight: bold; } /* Operator.Word */
+  .highlight .w { color: #bbbbbb; } /* Text.Whitespace */
+  .highlight .mb { color: #666666; } /* Literal.Number.Bin */
+  .highlight .mf { color: #666666; } /* Literal.Number.Float */
+  .highlight .mh { color: #666666; } /* Literal.Number.Hex */
+  .highlight .mi { color: #666666; } /* Literal.Number.Integer */
+  .highlight .mo { color: #666666; } /* Literal.Number.Oct */
+  .highlight .sa { color: #930b0b; } /* Literal.String.Affix */
+  .highlight .sb { color: #930b0b; } /* Literal.String.Backtick */
+  .highlight .sc { color: #930b0b; } /* Literal.String.Char */
+  .highlight .dl { color: #930b0b; } /* Literal.String.Delimiter */
+  .highlight .sd { color: #930b0b; font-style: italic; } /* Literal.String.Doc */
+  .highlight .s2 { color: #930b0b; } /* Literal.String.Double */
+  .highlight .se { color: #d50000; font-weight: bold; } /* Literal.String.Escape */
+  .highlight .sh { color: #930b0b; } /* Literal.String.Heredoc */
+  .highlight .si { color: #bb6688; font-weight: bold; } /* Literal.String.Interpol */
+  .highlight .sx { color: #008000; } /* Literal.String.Other */
+  .highlight .sr { color: #bb6688; } /* Literal.String.Regex */
+  .highlight .s1 { color: #930b0b; } /* Literal.String.Single */
+  .highlight .ss { color: #19177c; } /* Literal.String.Symbol */
+  .highlight .bp { color: #008000; } /* Name.Builtin.Pseudo */
+  .highlight .fm { color: #0000ff; } /* Name.Function.Magic */
+  .highlight .vc { color: #19177c; } /* Name.Variable.Class */
+  .highlight .vg { color: #19177c; } /* Name.Variable.Global */
+  .highlight .vi { color: #19177c; } /* Name.Variable.Instance */
+  .highlight .vm { color: #19177c; } /* Name.Variable.Magic */
+  .highlight .il { color: #666666; } /* Literal.Number.Integer.Long */
+}
+
+[data-theme="dark"] {
+  /* Dracula Theme v1.2.5
+   *
+   * https://github.com/zenorocha/dracula-theme
+   *
+   * Copyright 2016, All rights reserved
+   *
+   * Code licensed under the MIT license
+   * http://zenorocha.mit-license.org
+   *
+   * @author Rob G <wowmotty@gmail.com>
+   * @author Chris Bracco <chris@cbracco.me>
+   * @author Zeno Rocha <hi@zenorocha.com>
+   */
+
+  .highlight .hll { background-color: #f1fa8c }
+  .highlight  { background: #282a36; color: #f8f8f2 }
+  .highlight .c { color: #6272a4 } /* Comment */
+  .highlight .err { color: #f8f8f2 } /* Error */
+  .highlight .g { color: #f8f8f2 } /* Generic */
+  .highlight .k { color: #ff79c6 } /* Keyword */
+  .highlight .l { color: #f8f8f2 } /* Literal */
+  .highlight .n { color: #f8f8f2 } /* Name */
+  .highlight .o { color: #ff79c6 } /* Operator */
+  .highlight .x { color: #f8f8f2 } /* Other */
+  .highlight .p { color: #f8f8f2 } /* Punctuation */
+  .highlight .ch { color: #6272a4 } /* Comment.Hashbang */
+  .highlight .cm { color: #6272a4 } /* Comment.Multiline */
+  .highlight .cp { color: #ff79c6 } /* Comment.Preproc */
+  .highlight .cpf { color: #6272a4 } /* Comment.PreprocFile */
+  .highlight .c1 { color: #6272a4 } /* Comment.Single */
+  .highlight .cs { color: #6272a4 } /* Comment.Special */
+  .highlight .gd { color: #8b080b } /* Generic.Deleted */
+  .highlight .ge { color: #f8f8f2; text-decoration: underline } /* Generic.Emph */
+  .highlight .gr { color: #f8f8f2 } /* Generic.Error */
+  .highlight .gh { color: #f8f8f2; font-weight: bold } /* Generic.Heading */
+  .highlight .gi { color: #f8f8f2; font-weight: bold } /* Generic.Inserted */
+  .highlight .go { color: #44475a } /* Generic.Output */
+  .highlight .gp { color: #f8f8f2 } /* Generic.Prompt */
+  .highlight .gs { color: #f8f8f2 } /* Generic.Strong */
+  .highlight .gu { color: #f8f8f2; font-weight: bold } /* Generic.Subheading */
+  .highlight .gt { color: #f8f8f2 } /* Generic.Traceback */
+  .highlight .kc { color: #ff79c6 } /* Keyword.Constant */
+  .highlight .kd { color: #8be9fd; font-style: italic } /* Keyword.Declaration */
+  .highlight .kn { color: #ff79c6 } /* Keyword.Namespace */
+  .highlight .kp { color: #ff79c6 } /* Keyword.Pseudo */
+  .highlight .kr { color: #ff79c6 } /* Keyword.Reserved */
+  .highlight .kt { color: #8be9fd } /* Keyword.Type */
+  .highlight .ld { color: #f8f8f2 } /* Literal.Date */
+  .highlight .m { color: #bd93f9 } /* Literal.Number */
+  .highlight .s { color: #f1fa8c } /* Literal.String */
+  .highlight .na { color: #50fa7b } /* Name.Attribute */
+  .highlight .nb { color: #8be9fd; font-style: italic } /* Name.Builtin */
+  .highlight .nc { color: #50fa7b } /* Name.Class */
+  .highlight .no { color: #f8f8f2 } /* Name.Constant */
+  .highlight .nd { color: #f8f8f2 } /* Name.Decorator */
+  .highlight .ni { color: #f8f8f2 } /* Name.Entity */
+  .highlight .ne { color: #f8f8f2 } /* Name.Exception */
+  .highlight .nf { color: #50fa7b } /* Name.Function */
+  .highlight .nl { color: #8be9fd; font-style: italic } /* Name.Label */
+  .highlight .nn { color: #f8f8f2 } /* Name.Namespace */
+  .highlight .nx { color: #f8f8f2 } /* Name.Other */
+  .highlight .py { color: #f8f8f2 } /* Name.Property */
+  .highlight .nt { color: #ff79c6 } /* Name.Tag */
+  .highlight .nv { color: #8be9fd; font-style: italic } /* Name.Variable */
+  .highlight .ow { color: #ff79c6 } /* Operator.Word */
+  .highlight .w { color: #f8f8f2 } /* Text.Whitespace */
+  .highlight .mb { color: #bd93f9 } /* Literal.Number.Bin */
+  .highlight .mf { color: #bd93f9 } /* Literal.Number.Float */
+  .highlight .mh { color: #bd93f9 } /* Literal.Number.Hex */
+  .highlight .mi { color: #bd93f9 } /* Literal.Number.Integer */
+  .highlight .mo { color: #bd93f9 } /* Literal.Number.Oct */
+  .highlight .sa { color: #f1fa8c } /* Literal.String.Affix */
+  .highlight .sb { color: #f1fa8c } /* Literal.String.Backtick */
+  .highlight .sc { color: #f1fa8c } /* Literal.String.Char */
+  .highlight .dl { color: #f1fa8c } /* Literal.String.Delimiter */
+  .highlight .sd { color: #f1fa8c } /* Literal.String.Doc */
+  .highlight .s2 { color: #f1fa8c } /* Literal.String.Double */
+  .highlight .se { color: #f1fa8c } /* Literal.String.Escape */
+  .highlight .sh { color: #f1fa8c } /* Literal.String.Heredoc */
+  .highlight .si { color: #f1fa8c } /* Literal.String.Interpol */
+  .highlight .sx { color: #f1fa8c } /* Literal.String.Other */
+  .highlight .sr { color: #f1fa8c } /* Literal.String.Regex */
+  .highlight .s1 { color: #f1fa8c } /* Literal.String.Single */
+  .highlight .ss { color: #f1fa8c } /* Literal.String.Symbol */
+  .highlight .bp { color: #f8f8f2; font-style: italic } /* Name.Builtin.Pseudo */
+  .highlight .fm { color: #50fa7b } /* Name.Function.Magic */
+  .highlight .vc { color: #8be9fd; font-style: italic } /* Name.Variable.Class */
+  .highlight .vg { color: #8be9fd; font-style: italic } /* Name.Variable.Global */
+  .highlight .vi { color: #8be9fd; font-style: italic } /* Name.Variable.Instance */
+  .highlight .vm { color: #8be9fd; font-style: italic } /* Name.Variable.Magic */
+  .highlight .il { color: #bd93f9 } /* Literal.Number.Integer.Long */
+}
+/* =============== [ END ] Pygments Default [ END ] =============== */
+
+main,
+footer {
+  box-sizing: border-box;
+}
+
+/* ---------- [ Icons ] ---------- */
+.ph {
+  display: inline-block;
+}
+.ph.size-1x {
+  font-size: 1em;
+}
+.ph.size-2x {
+  font-size: 2em;
+}
+.ph.size-3x {
+  font-size: 3em;
+}
+.ph.size-4x {
+  font-size: 4em;
+}
+.ph.size-5x {
+  font-size: 5em;
+}
+.ph.size-lg {
+  font-size: 6em;
+}
+.ph.size-fw {
+  font-size: 1em;
+} /* FIXME - Fixed width */
+
+.ph.flip-horizontal {
+  transform: scaleX(-1);
+}
+.ph.flip-vertical {
+  transform: scaleY(-1);
+}
+
+.ph.rotate-90 {
+  transform: rotate(90deg);
+}
+.ph.rotate-180 {
+  transform: rotate(180deg);
+}
+.ph.rotate-270 {
+  transform: rotate(270deg);
+}
+
+.accent {
+  color: var(--fgColor-info);
+}
+.success {
+  color: var(--fgColor-success);
+}
+.attention {
+  color: var(--fgColor-attention);
+}
+.danger {
+  color: var(--fgColor-danger);
+}
+.done {
+  color: var(--fgColor-done);
+}
+
+/* ---------- [ Layout ] ---------- */
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 1;
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.column:first-of-type {
+  padding-left: 0;
+}
+
+.column:last-of-type {
+  padding-right: 0;
+}
+
+.column.is-one-third {
+  flex: 0 0 33.3333%;
+}
+
+.column.is-half {
+  flex: 0 0 50%;
+}
+
+.column.is-two-thirds {
+  flex: 0 0 66.6667%;
+}
+
+.columns > *:not(.column) {
+  flex: 0 0 100%;
+}
+
+/* FIXME - Printable syntax highlighting */
+
+/* ---------- [ Agenda Slide ] ---------- */
+.agenda {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+
+  header {
+    grid-column: span 2;
+  }
+
+  p {
+    counter-increment: section;
+    background: var(--bgColor-light);
+    font-size: var(--size-body-m);
+    padding: 0.75rem;
+
+    .title {
+      text-align: left;
+      display: block;
+      font-weight: bold;
+      font-size: var(--size-body-l);
+    }
+
+    &::before {
+      content: counter(section);
+      font-weight: bold;
+      background: var(--bright-orange);
+      color: var(--white);
+      width: 1.5rem;
+      height: 1.5rem;
+      display: block;
+      text-align: center;
+      line-height: 1.5rem;
+      font-size: var(--size-body-l);
+      margin-top: -0.75rem;
+      margin-left: -0.75rem;
+    }
+  }
+}
+
+/* ---------- [ Text Sizes & Styles ] ---------- */
+/* FIXME Think through these sizes more */
+.lead {
+  font-size: var(--size-title-l);
+}
+.big {
+  font-size: var(--size-title-m);
+}
+.small {
+  font-size: var(--size-body-s);
+}
+
+.underline:before,
+.line-through:before {
+  content: "DO NOT USE ";
+}
+
+.underline,
+.line-through {
+  background: red;
+  color: yellow;
+}
+
+/* FIXME Style mark better */
+/* FIXME Style blockquotes better */
+
+/* Alignment */
+.text-justify {
+  text-align: justify;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+h1 {
+  font-family: var(--font-secondary);
+  font-size: var(--size-headline-l);
+  line-height: 105%;
+}
+
+ul.checklist {
+  list-style-type: none;
+  padding-left: 0.6rem;
+
+  li i.ph {
+    font-weight: bold;
+    top: 1px;
+    position: relative;
+    padding-right: 0.4rem;
+  }
+}
+
+/* No styles for .relaxed lists */
+
+.icon-list {
+  ul,
+  ol {
+    padding-left: 0.4em !important;
+  }
+
+  li {
+    list-style: none;
+    padding-left: 0 !important;
+  }
+
+  .icon {
+    padding-right: 0.4em;
+    position: relative;
+    top: 0.12em;
+  }
+}
+
+/* ---------- [ Container ] ---------- */
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+@media screen {
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 100%;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1100px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1200px;
+    }
+  }
+  @media (min-width: 1366px) {
+    .container {
+      max-width: 1300px;
+    }
+  }
+  @media (min-width: 1440px) {
+    .container {
+      max-width: 1350px;
+    }
+  }
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1450px;
+    }
+  }
+}
+
+/* ---------- [ Navbar ] ---------- */
+#nav {
+  background-color: var(--bgColor-muted);
+  border-bottom: 1px solid var(--borderColor-muted);
+  height: 4rem;
+  max-width: 100vw;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 11;
+}
+
+#nav > .container {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+
+  display: flex;
+  gap: var(--padding-sm);
+  align-items: center;
+}
+
+#nav .title {
+  font-family: var(--font-secondary);
+  font-size: var(--size-title-m);
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#nav .fill {
+  flex-grow: 1;
+}
+
+#nav a {
+  display: inline-block;
+  align-items: center;
+}
+
+#nav button {
+  cursor: pointer;
+  padding: 0 1rem 0 0;
+  margin: 0;
+  background: none;
+  border: none;
+  vertical-align: middle;
+}
+
+/* Adjust SVG colors on theme change */
+#nav svg {
+  color: var(--fgColor-default);
+  height: 2rem;
+}
+[data-theme="dark"] #nav svg.dark {
+  display: none;
+}
+[data-theme="light"] #nav svg.light {
+  display: none;
+}
+#nav .logo {
+  display: block;
+  font-size: 0;
+  color: var(--white);
+  --webkit-mask: var(--ascendient-logo) center no-repeat;
+  mask: var(--ascendient-logo) center no-repeat;
+  width: 13rem;
+  height: 100%;
+  background-color: var(--logo-color);
+}
+
+/* ---------- [ Content Layout ] ---------- */
+@media screen {
+  #layout {
+    display: grid;
+    grid-template:
+      "sidebar header" auto
+      "sidebar content" 1fr
+      "footer footer" auto
+      / 33% 1fr;
+    margin-top: 4rem;
+    gap: 2rem;
+  }
+
+  #layout .document-content {
+    grid-area: content;
+  }
+  #layout .document-sidebar {
+    grid-area: sidebar;
+    max-width: 375px;
+  }
+  #layout .document-header {
+    grid-area: header;
+  }
+
+  .document-sidebar .sidebar-content {
+    border-right: 1px solid var(--borderColor-muted);
+    position: sticky;
+    top: 4rem;
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .document-sidebar.overlay .sidebar-content {
+    background-color: var(--bgColor-muted);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    display: block; /* Visible when overlay class is added */
+    height: 100vh;
+    left: 0;
+    max-width: 375px;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .document-sidebar.overlay .overlay-background {
+    background: var(--bgColor-default);
+    height: 100vh;
+    left: 0;
+    opacity: 0.9;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 50;
+  }
+
+  .document-content {
+    margin-top: 4rem;
+  }
+}
+
+/* ---------- [ Table of Contents ] ---------- */
+.document-sidebar nav ul {
+  list-style-type: none;
+  display: block;
+  padding: 0;
+
+  ul {
+    padding-left: 1rem;
+
+    /* The colophon / copyright notice adds an extra list item that we don't want to display */
+    &.sectlevel1 > li:last-child {
+      display: none !important;
+    }
+  }
+
+  li {
+    &.open .sectlevel2,
+    &.open .sectlevel3 {
+      display: block;
+    }
+
+    &.closed .sectlevel2,
+    &.closed .sectlevel3 {
+      display: none;
+    }
+
+    a {
+      display: block;
+      color: var(--fgColor-default);
+      padding: 0.25rem 0.65rem;
+
+      &.active {
+        box-shadow: inset max(3px, 0.1875rem, 0.12em) 0 0 var(--fgColor-info);
+        color: var(--fgColor-info);
+        font-weight: bold;
+      }
+
+      &.parent-active {
+        box-shadow: inset max(3px, 0.1875rem, 0.12em) 0 0 var(--fgColor-muted);
+        color: var(--fgColor-muted);
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/* ---------- [ Sidebar Toggle ] ---------- */
+#toggle-sidebar {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  #layout {
+    grid-template:
+      "header" auto
+      "content" 1fr
+      "footer" auto;
+  }
+
+  .document-sidebar {
+    display: none;
+  }
+
+  #toggle-sidebar {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 1rem 0 0;
+    margin: 0;
+    background: none;
+    border: none;
+    vertical-align: middle;
+  }
+}
+
+.document-sidebar.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100vh;
+  min-height: 100vh;
+  background-color: var(--background-primary);
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  display: block; /* Visible when overlay class is added */
+}
+
+/* ---------- [ Course Header ] ---------- */
+
+.document-header {
+  grid-area: header;
+  background: var(--bgColor-intense);
+  border-radius: var(--radius-medium);
+  color: var(--fgColor-intense);
+  margin-top: var(--padding-md);
+  padding: var(--padding-lg) var(--padding-md) var(--padding-xxl);
+
+  .subtitle {
+    font-family: var(--font-secondary);
+    font-size: var(--size-title-l);
+    line-height: 105%;
+    margin-bottom: 0;
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+}
+
+/* ---------- [ Chapter Header ] ---------- */
+.sect1 > header {
+  background: var(--bgColor-light);
+  color: var(--fgColor-default);
+  font-size: var(--size-title-xl);
+  padding: var(--padding-lg) var(--padding-md) var(--padding-md);
+  border-radius: var(--radius-medium);
+}
+
+.sect1 > header .subtitle {
+  font-family: var(--font-secondary);
+  font-size: var(--size-title-m);
+  font-weight: 900;
+  margin-bottom: 0;
+  line-height: 105%;
+}
+
+.sect1 > header h2 {
+  border-bottom: 0;
+
+  font-family: var(--font-secondary);
+  font-size: var(--size-headline-s);
+  line-height: 105%;
+  font-weight: 300;
+  padding: 0 0 0.5rem;
+  margin: 0;
+}
+
+/**
+ * Objectives:
+ * Headers followed by objectives are styled differently to put the objectives in the same
+ * background "box" as the header, even though they are separate elements.
+ */
+.sect1 > header:has(+ .objectives) {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.objectives {
+  background: var(--bgColor-light);
+  border-bottom-left-radius: var(--radius-medium);
+  border-bottom-right-radius: var(--radius-medium);
+  font-size: var(--size-body-l);
+  padding: var(--padding-md);
+  /*
+  border-top: 5px solid var(--borderColor-default);
+  margin: 0.25in 0 0;
+  padding: 0.25in 0 0;
+  */
+}
+
+.objectives li {
+  padding-left: var(--padding-xs);
+}
+
+.objectives li::marker {
+  content: ""; /* Phosphor Icon Check Unicode */
+  font-family: "Phosphor";
+  font-weight: bold;
+}
+
+/* ---------- [ Section Header ] ---------- */
+.sect2 {
+  margin-top: var(--padding-lg);
+}
+
+.sect2 h3 {
+  font-family: var(--font-secondary);
+  font-size: var(--size-title-l);
+  line-height: 105%;
+}
+
+/* ---------- [ Footnotes ] ---------- */
+.document-content {
+  margin-bottom: var(--padding-lg);
+}
+
+.footnotes {
+  font-size: var(--size-body-m);
+  color: var(--fgColor-muted);
+  margin-top: var(--padding-lg);
+  padding-top: var(--padding-md);
+  border-top: 1px solid var(--borderColor-muted);
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* ---------- [ Footer ] ---------- */
+
+.document-footer {
+  background: var(--bgColor-muted);
+  border-top: 1px solid var(--borderColor-muted);
+  color: var(--fgColor-muted);
+  padding-bottom: var(--padding-md);
+  padding-top: var(--padding-sm);
+
+  a {
+    color: var(--fgColor-accent);
+    text-decoration: underline;
+  }
+}
+
+.colophon {
+  font-size: var(--size-body-s);
+}
+
+/* ---------- [ Misc Content ] ---------- */
+/* Captions */
+.exampleblock .title,
+.listingblock .title,
+table caption {
+  font-style: italic;
+  text-align: center;
+}
+
+.listingblock.wrap-text pre {
+  white-space: pre-wrap;
+}
+
+.exampleblock .content {
+  border-radius: var(--radius-small);
+  background: var(--bgColor-light);
+  padding: var(--padding-xs);
+}
+
+/* ---------- [ Instructor Notes ] ---------- */
+.notes-title {
+  font-weight: bold;
+}
+
+/* ---------- [ Print Layout ] ---------- */
+@media only screen {
+  .print-colophon {
+    display: none;
+  }
+}
+
+@media print {
+  /* Page Layouts */
+  @page {
+    size: 8.5in 11in;
+    margin: 1in;
+
+    @top-left {
+      color: var(--fgColor-default);
+    }
+    @top-right {
+      color: var(--fgColor-default);
+    }
+    @bottom-left {
+      color: var(--fgColor-default);
+      content: counter(page);
+    }
+    @bottom-right {
+      color: var(--fgColor-default);
+      content: "© Ascendient, LLC";
+    }
+  }
+
+  body {
+    background: transparent !important;
+    color: #141414;
+  }
+
+  #layout {
+    display: block;
+    margin-top: 0;
+  }
+
+  #nav,
+  .document-footer {
+    display: none;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .columns h3 {
+    margin-bottom: 0 !important;
+  }
+
+  .column {
+    margin: var(--base-size-16) 0.1in 0;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  /* Cover Page */
+  @page cover {
+    @top-left {
+      content: none;
+    }
+    @top-right {
+      content: none;
+    }
+    @bottom-left {
+      content: var(--ascendient-logo);
+      width: 3in;
+    }
+    @bottom-right {
+      content: none;
+    }
+
+    background: var(--bgColor-intense);
+    margin: 2in 1in 3in;
+  }
+
+  #layout .document-header {
+    border-radius: 0;
+    color: var(--dark-sand) !important;
+    height: 100%;
+    width: 100%;
+    page: cover;
+    break-after: always;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Chapter headers */
+  @page chapter {
+    @top-left {
+      content: none;
+    }
+    @top-right {
+      content: none;
+    }
+    @bottom-left {
+      content: none;
+    }
+    @bottom-right {
+      content: none;
+    }
+
+    background: var(--sand);
+    margin: 5in 1in 2in;
+  }
+
+  .sect1 > header {
+    margin: 0;
+    padding: 0;
+    page-break-after: always;
+    page-break-before: always;
+    page: chapter;
+    text-align: right;
+  }
+
+  .sect1 > header:has(+ .objectives) {
+    page-break-after: avoid;
+  }
+
+  .sect1 > header h2 {
+    align-self: end;
+    border-bottom: 0;
+    font-family: var(--font-secondary);
+    font-size: var(--size-headline-s);
+    line-height: 105%;
+  }
+
+  .sect1 > header .subtitle {
+    text-transform: uppercase;
+  }
+
+  .objectives {
+    page: chapter;
+    page-break-after: always;
+  }
+
+  .objectives {
+    border-top: 5px solid var(--borderColor-default);
+    margin: 0.25in 0 0;
+    padding: 0.25in 0 0;
+  }
+
+  /* Fixes a bug in WeasyPrint where list icons are not padded. */
+  .objectives li::before {
+    content: "";
+    padding-left: var(--padding-xs);
+  }
+
+  .sect1 > header + .objectives + .sect2 {
+    margin-top: 0;
+  }
+
+  /* Section headers */
+  .document-content header h3 {
+    font-size: var(--size-title-m) !important;
+    color: var(--fgColor-default) !important;
+  }
+
+  /* Table of Contents */
+  .document-sidebar {
+    nav ul li a {
+      padding: 0;
+    }
+
+    nav > ul > ul {
+      margin-bottom: var(--padding-sm);
+    }
+
+    nav ul ul ul {
+      padding-left: 2rem;
+    }
+
+    .sidebar-content {
+      border-right: none;
+      height: auto;
+      max-height: none;
+      max-width: none;
+      overflow: visible;
+      position: initial;
+      width: 100%;
+
+      h2 {
+        color: var(--fgColor-default);
+        font-size: var(--size-title-l);
+        border-bottom: 0;
+        margin-top: 0;
+      }
+
+      li a::after {
+        content: leader(".") target-counter(attr(href), page);
+      }
+
+      /* Never show the 4th level sections */
+      ul li .sectlevel4 {
+        display: none;
+      }
+
+      /* Don't show the copyright list item (this has to be set again for some reason) */
+      ul.sectlevel1 > li:last-child {
+        display: none !important;
+      }
+    }
+  }
+
+  /* Avoid Page Breaks */
+  .notes,
+  .tableblock {
+    page-break-inside: avoid;
+  }
+
+  /* Images */
+  img {
+    max-width: 100% !important;
+    max-height: 50%;
+    width: auto;
+  }
+
+  .column img {
+    width: 100%;
+    max-height: 100%;
+  }
+
+  /* This allows images to be displayed more similarly to the browser. When images are too large,
+  the will be resized to fit */
+  table img {
+    width: 100%;
+  }
+
+  /* Break long code lines */
+  pre {
+    max-width: 100%;
+
+    code {
+      white-space: pre-wrap;
+    }
+  }
+
+  /* Colophon */
+  @page colophon {
+    @top-left {
+      content: none;
+    }
+    @top-right {
+      content: none;
+    }
+    @bottom-left {
+      content: none;
+    }
+    @bottom-right {
+      content: none;
+    }
+
+    background: var(--sand);
+  }
+
+  .print-colophon {
+    color: var(--fgColor-default);
+    display: block;
+    page: colophon;
+    page-break-after: always;
+  }
+}
+
+  </style>
+  <title>Lab Guide: WA3546-CAP ADP Data Program Projects</title>
+</head>
+<body>
+  <nav id="nav">
+    <div class="container">
+      <a href="https://www.ascendientlearning.com/" class="logo">Ascendient Learning</a>
+      <span class="title">WA3546-CAP ADP Data Program Projects</span>
+      <span class="fill"></span>
+      <button id="toggle-theme" aria-label="Toggle Theme" onclick="toggleTheme()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="dark" viewBox="0 0 256 256"><path d="M234 142a8 8 0 0 0-8-2A88 88 0 0 1 116 30a8 8 0 0 0-10-10 105 105 0 0 0-53 37 104 104 0 0 0 83 167 103 103 0 0 0 63-21 105 105 0 0 0 37-53 8 8 0 0 0-2-8Zm-45 48A88 88 0 0 1 66 67a89 89 0 0 1 31-26 106 106 0 0 0-1 15 104 104 0 0 0 104 104 106 106 0 0 0 15-1 89 89 0 0 1-26 31Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="light" viewBox="0 0 256 256"><path d="M120 40V16a8 8 0 0 1 16 0v24a8 8 0 0 1-16 0Zm72 88a64 64 0 1 1-64-64 64 64 0 0 1 64 64Zm-16 0a48 48 0 1 0-48 48 48 48 0 0 0 48-48ZM58 70a8 8 0 0 0 12-12L54 42a8 8 0 0 0-12 12Zm0 116-16 16a8 8 0 0 0 12 12l16-16a8 8 0 0 0-12-12ZM192 72a8 8 0 0 0 6-2l16-16a8 8 0 0 0-12-12l-16 16a8 8 0 0 0 6 14Zm6 114a8 8 0 0 0-12 12l16 16a8 8 0 0 0 12-12ZM48 128a8 8 0 0 0-8-8H16a8 8 0 0 0 0 16h24a8 8 0 0 0 8-8Zm80 80a8 8 0 0 0-8 8v24a8 8 0 0 0 16 0v-24a8 8 0 0 0-8-8Zm112-88h-24a8 8 0 0 0 0 16h24a8 8 0 0 0 0-16Z"/></svg>
+      </button>
+      <button id="toggle-sidebar" aria-label="Toggle Sidebar" onclick="toggleSidebar()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256"><path d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8ZM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16Zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16Z"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div id="layout" class="container">
+    <header class="document-header">
+      <p class="subtitle">WA3546-CAP Lab Guide</p>
+      <h1>ADP Data Program Projects</h1>
+    </header>
+    <div class="print-colophon">
+      <p>© 2025 Ascendient, LLC</p>
+<p>Revision 2.0.0 published on 2025-07-23.</p>
+<p>No part of this book may be reproduced or used in any form or by any electronic, mechanical, or other means, currently available or developed in the future, including photocopying, recording, digital scanning, or sharing, or in any information storage or retrieval system, without permission in writing from the publisher.</p>
+<p><strong>Trademark Notice:</strong> Product or corporate names may be trademarks or registered trademarks, and are used only for identification and explanation without intent to infringe.</p>
+<p>To obtain authorization for any such activities (e.g., reprint rights, translation rights), to customize this book, or for other sales inquiries, please contact:</p>
+<p>Ascendient, LLC<br>
+1 California Street Suite 2900<br>
+San Francisco, CA 94111<br>
+<a href="https://www.ascendientlearning.com/" class="bare">https://www.ascendientlearning.com/</a></p>
+<p>USA: 1-877-517-6540, email: <a href="mailto:getinfousa@ascendientlearning.com">getinfousa@ascendientlearning.com</a><br>
+Canada: 1-877-812-8887 toll free, email: <a href="mailto:getinfo@ascendientlearning.com">getinfo@ascendientlearning.com</a></p>
+    </div>
+    <aside class="document-sidebar">
+      <div class="overlay-background"></div>
+      <div id="toc" class="sidebar-content">
+        <header>
+          <h2>Table of Contents</h2>
+        </header>
+        <nav>
+          <ul class="sectlevel1">
+<li><a href="#_mid_program_capstone_project_employee_benefits_optimization_for_techlance">1. Mid-Program Capstone Project: Employee Benefits Optimization for TechLance</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction">1.1. Introduction</a></li>
+<li><a href="#_scenario">1.2. Scenario</a>
+<ul class="sectlevel3">
+<li><a href="#_benefits_optimization_system">1.2.1. Benefits Optimization System</a></li>
+</ul>
+</li>
+<li><a href="#_resources">1.3. Resources</a>
+<ul class="sectlevel3">
+<li><a href="#_datasets">1.3.1. Datasets</a></li>
+</ul>
+</li>
+<li><a href="#_capstone_instructions">1.4. Capstone Instructions</a>
+<ul class="sectlevel3">
+<li><a href="#_phase_1_data_foundation">1.4.1. Phase 1: Data Foundation</a></li>
+<li><a href="#_phase_2_exploratory_data_analysis">1.4.2. Phase 2: Exploratory Data Analysis</a></li>
+<li><a href="#_phase_3_machine_learning">1.4.3. Phase 3: Machine Learning</a></li>
+<li><a href="#_phase_4_analytics_dashboard_and_recommendations">1.4.4. Phase 4: Analytics Dashboard and Recommendations</a></li>
+</ul>
+</li>
+<li><a href="#_conclusion">1.5. Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#">&nbsp;</a></li>
+</ul>
+        </nav>
+      </div>
+    </aside>
+    <main class="document-content">
+      
+        
+<section class="section sect1">
+  <header>
+    <h2 id="_mid_program_capstone_project_employee_benefits_optimization_for_techlance">Mid-Program Capstone Project: Employee Benefits Optimization for TechLance</h2>
+    
+      <p class="subtitle">Module 1</p>
+    
+  </header>
+  
+<section class="section sect2">
+  <header>
+    <h3 id="_introduction">1.1. Introduction</h3>
+    
+  </header>
+  <p>This capstone challenges you to develop a <strong>comprehensive analytics solution</strong> for TechLance Solutions, a fictional mid-sized company with 5,000 employees spending $12M annually on employee benefits. The solution transforms raw benefits data into actionable insights to optimize the benefits portfolio, addressing underutilization, satisfaction gaps, and cost pressures. By integrating Data Science, Machine Learning, and Web Development, you will create a Python-based application to deliver insights and recommendations, executable via a single command-line call.</p>
+</section>
+
+<section class="section sect2">
+  <header>
+    <h3 id="_scenario">1.2. Scenario</h3>
+    
+  </header>
+  <p>TechLance Solutions, a mid-sized technology company, faces challenges in managing its $12M benefits program:</p>
+
+
+<div class="ulist">
+<ul>
+<li>
+<strong>Cost Pressure</strong>: Benefits costs have risen 15% year-over-year.
+
+</li>
+
+<li>
+<strong>Low Engagement</strong>: Surveys indicate many employees underutilize available benefits.
+
+</li>
+
+<li>
+<strong>Satisfaction Gaps</strong>: Exit interviews highlight benefits as a retention concern.
+
+</li>
+
+<li>
+<strong>Resource Allocation</strong>: Lack of clear data on benefits’ return on investment (ROI).
+
+</li>
+
+<li>
+<strong>Demographic Shifts</strong>: A multi-generational workforce with diverse needs.
+
+</li>
+
+</ul>
+</div>
+<p>The HR leadership team seeks a data-driven solution to optimize benefits, improve employee satisfaction, and enhance retention while controlling costs.</p>
+
+<section class="section sect3">
+  <header>
+    <h4 id="_benefits_optimization_system">1.2.1. Benefits Optimization System</h4>
+    
+  </header>
+  <p>A Python-based web application (e.g., Flask, Streamlit or Gradio) will integrate data processing, analytics, machine learning, and a dashboard to provide actionable insights. The application will run from a single command (e.g., <code>python app.py</code>) and support caching for faster load times. It must handle new data entries with the same schema seamlessly.</p>
+</section>
+</section>
+
+<section class="section sect2">
+  <header>
+    <h3 id="_resources">1.3. Resources</h3>
+    
+  </header>
+  
+<section class="section sect3">
+  <header>
+    <h4 id="_datasets">1.3.1. Datasets</h4>
+    
+  </header>
+  <p>The following datasets are provided in the <code>data</code> directory:
+* <code>usage_data.csv</code>: Contains <code>EmployeeID</code>, <code>BenefitID</code>, <code>UsageFrequency</code>, <code>LastUsedDate</code>.</p>
+
+
+<div class="ulist">
+<ul>
+<li>
+<code>employee_data.csv</code>: Includes <code>EmployeeID</code>, <code>Age</code>, <code>Gender</code>, <code>Department</code>, <code>Tenure</code>.
+
+</li>
+
+<li>
+<code>benefits_data.csv</code>: Details <code>BenefitID</code>, <code>BenefitType</code>, <code>BenefitSubType</code>, <code>BenefitCost</code>.
+
+</li>
+
+<li>
+<code>feedback_data.csv</code>: Provides <code>EmployeeID</code>, <code>BenefitID</code>, <code>SatisfactionScore</code>, <code>Comments</code>.
+
+</li>
+
+</ul>
+</div>
+</section>
+</section>
+
+<section class="section sect2">
+  <header>
+    <h3 id="_capstone_instructions">1.4. Capstone Instructions</h3>
+    
+  </header>
+  <p>This capstone is open-ended, encouraging creative solutions using Data Science, Machine Learning, and Generative AI. The following sections outline the key phases and requirements.</p>
+
+<section class="section sect3">
+  <header>
+    <h4 id="_phase_1_data_foundation">1.4.1. Phase 1: Data Foundation</h4>
+    
+  </header>
+  <p>Build a robust data pipeline to ensure high-quality, integrated data for analysis.</p>
+
+<div class="markdown-alert markdown-alert-note " dir="auto">
+    <p class="markdown-alert-title" dir="auto">
+        <i class="mr-2 ph ph-info"></i>
+        
+        
+        Note
+    </p>
+    <p dir="auto">
+        It is recommended to create a python notebook <code>.ipynb</code> file to organize your thoughts, clean the data, and prepare the data foundation and EDA exploration of the results.
+    </p>
+</div>
+
+<section class="section sect4">
+  <header>
+    <h5 id="_task_1_1_data_quality_assessment">1.4.1.1. Task 1.1: Data Quality Assessment</h5>
+    
+  </header>
+  <div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Load datasets (<code>usage_data.csv</code>, <code>employee_data.csv</code>, <code>benefits_data.csv</code>, <code>feedback_data.csv</code>) using pandas.</p>
+</li>
+<li>
+<p>Profile data to identify issues (e.g., missing values, duplicates, outliers like high <code>UsageFrequency</code>).</p>
+</li>
+<li>
+<p>Document findings and propose solutions (e.g., impute missing <code>SatisfactionScore</code>, remove duplicates).</p>
+</li>
+<li>
+<p>Define validation rules (e.g., <code>SatisfactionScore</code> in 1–5, <code>LastUsedDate</code> in 2023–2025).</p>
+</li>
+</ol>
+</div>
+<p><strong>Deliverable</strong>: 1–2 paragraph summary in a python notebook (not required in the final app).</p>
+</section>
+
+<section class="section sect4">
+  <header>
+    <h5 id="_task_1_2_data_integration_and_preparation">1.4.1.2. Task 1.2: Data Integration and Preparation</h5>
+    
+  </header>
+  <div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Merge datasets using <code>EmployeeID</code> and <code>BenefitID</code> to create a unified dataset.</p>
+</li>
+<li>
+<p>Handle missing values (e.g., impute <code>UsageFrequency</code> with median, exclude incomplete <code>Comments</code>).</p>
+</li>
+<li>
+<p>Standardize data types (e.g., <code>LastUsedDate</code> to datetime, encode <code>Gender</code>/<code>Department</code>).</p>
+</li>
+<li>
+<p>Create derived fields:</p>
+
+
+<div class="ulist">
+<ul>
+<li>
+Age groups (Gen Z: 18–25, Millennial: 26–41, Gen X: 42–57, Boomer: 58+).
+
+</li>
+
+<li>
+Tenure categories (&lt;5 years, 5–15 years, 15+ years).
+
+</li>
+
+<li>
+Benefit subcategory flags (e.g., “401k Basic Matching”).
+
+</li>
+
+</ul>
+</div>
+</li>
+<li>
+<p>Validate the dataset (e.g., no negative <code>UsageFrequency</code>).</p>
+</li>
+</ol>
+</div>
+<p><strong>Deliverable</strong>: Clean, integrated dataset (CSV) and notebook documenting preprocessing.</p>
+</section>
+</section>
+
+<section class="section sect3">
+  <header>
+    <h4 id="_phase_2_exploratory_data_analysis">1.4.2. Phase 2: Exploratory Data Analysis</h4>
+    
+  </header>
+  <p>Analyze data to uncover utilization patterns, demographic trends, and cost efficiency.</p>
+
+<section class="section sect4">
+  <header>
+    <h5 id="_task_2_1_utilization_pattern_analysis">1.4.2.1. Task 2.1: Utilization Pattern Analysis</h5>
+    
+  </header>
+  <div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Analyze <code>usage_data.csv</code> for most/least utilized benefits by <code>UsageFrequency</code>.</p>
+</li>
+<li>
+<p>Examine temporal trends in <code>LastUsedDate</code> (e.g., monthly usage for 2023–2024).</p>
+</li>
+<li>
+<p>Categorize employees by engagement (high: <code>UsageFrequency</code> ≥ 7, medium: 3–6, low: 0–2).</p>
+</li>
+<li>
+<p>Analyze utilization by <code>BenefitSubType</code> (e.g., “401k Basic Matching” vs. “401k High Contribution”).</p>
+</li>
+<li>
+<p>Create visualizations (e.g., bar charts, line plots) using Plotly.</p>
+</li>
+</ol>
+</div>
+<p><strong>Deliverable</strong>: Utilization Analysis Dashboard (5–7 visualizations with analysis of trends and patterns).</p>
+</section>
+
+<section class="section sect4">
+  <header>
+    <h5 id="_task_2_2_demographic_insights_discovery">1.4.2.2. Task 2.2: Demographic Insights Discovery</h5>
+    
+  </header>
+  <div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Analyze benefit usage by demographics (<code>Age</code>, <code>Gender</code>, <code>Department</code>, <code>Tenure</code>).</p>
+</li>
+<li>
+<p>Identify preferences by <code>BenefitSubType</code> (e.g., IT’s preference for “Technology Stipend”).</p>
+</li>
+<li>
+<p>Create visualizations (e.g., stacked bar charts, heatmaps).</p>
+</li>
+<li>
+<p>Document differences (e.g., Gen Z’s preference for “Gym Membership”).</p>
+</li>
+</ol>
+</div>
+<p><strong>Deliverable</strong>: Demographic Analysis Report with visualizations.</p>
+</section>
+
+<section class="section sect4">
+  <header>
+    <h5 id="_task_2_3_cost_efficiency_and_subcategory_analysis">1.4.2.3. Task 2.3: Cost Efficiency and Subcategory Analysis</h5>
+    
+  </header>
+  <div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Calculate cost-per-usage (<code>BenefitCost</code> ÷ <code>UsageFrequency</code>) by <code>BenefitID</code>/<code>BenefitSubType</code>.</p>
+</li>
+<li>
+<p>Develop an ROI score (normalize cost-per-usage and <code>SatisfactionScore</code>).</p>
+</li>
+<li>
+<p>Identify underutilized high-cost subcategories (e.g., “Gym Membership: Tier 3 Partners”).</p>
+</li>
+<li>
+<p>Rank benefits by cost efficiency, flagging candidates for elimination.</p>
+</li>
+<li>
+<p>Create quadrant plots (cost vs. usage, cost vs. satisfaction).</p>
+</li>
+</ol>
+</div>
+<p><strong>Deliverable</strong>: Cost Efficiency Analysis Report with recommendations.</p>
+</section>
+</section>
+
+<section class="section sect3">
+  <header>
+    <h4 id="_phase_3_machine_learning">1.4.3. Phase 3: Machine Learning</h4>
+    
+  </header>
+  <p>Apply machine learning to analyze satisfaction, segment employees, and recommend benefits.</p>
+
+<section class="section sect4">
+  <header>
+    <h5 id="_task_3_1_employee_satisfaction_analysis">1.4.3.1. Task 3.1: Employee Satisfaction Analysis</h5>
+    
+  </header>
+  <div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Analyze <code>SatisfactionScore</code> distributions by <code>BenefitID</code>, <code>BenefitSubType</code>, and demographics.</p>
+</li>
+<li>
+<p>Compute correlations between <code>UsageFrequency</code> and <code>SatisfactionScore</code>.</p>
+</li>
+<li>
+<p>Perform predictive sentiment analysis on <code>Comments</code> (positive, neutral, negative).</p>
+</li>
+<li>
+<p>Identify satisfaction drivers (e.g., regression on <code>SatisfactionScore</code>).</p>
+</li>
+<li>
+<p>Create scorecards by <code>BenefitType</code>/<code>BenefitSubType</code> with sentiment insights.</p>
+</li>
+</ol>
+</div>
+<p><strong>Deliverable</strong>: Employee Satisfaction Insights Report.</p>
+</section>
+
+<section class="section sect4">
+  <header>
+    <h5 id="_task_3_2_employee_segmentation">1.4.3.2. Task 3.2: Employee Segmentation</h5>
+    
+  </header>
+  <div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create usage vectors (total <code>UsageFrequency</code> per <code>BenefitSubType</code>).</p>
+</li>
+<li>
+<p>Generate temporal profiles (e.g., monthly usage via PCA or summary stats).</p>
+</li>
+<li>
+<p>Apply clustering (e.g., K-Means with silhouette score, Gaussian Mixture Models).</p>
+</li>
+<li>
+<p>Validate clusters (silhouette score, Davies-Bouldin index).</p>
+</li>
+<li>
+<p>Profile clusters by usage patterns and demographics (e.g., “wellness enthusiasts”).</p>
+</li>
+</ol>
+</div>
+<p><strong>Deliverable</strong>: Segmentation Analysis Report with visualizations.</p>
+</section>
+
+<section class="section sect4">
+  <header>
+    <h5 id="_task_3_3_recommender_system">1.4.3.3. Task 3.3: Recommender System</h5>
+    
+  </header>
+  <div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Build a user–item matrix (<code>EmployeeID</code> vs. <code>BenefitID</code>/<code>BenefitSubType</code>, values = <code>UsageFrequency</code>).</p>
+</li>
+<li>
+<p>Use collaborative filtering (e.g., k-NN, SVD) or content-based filtering (e.g., cosine similarity on metadata).</p>
+</li>
+<li>
+<p>Evaluate offline (Precision@K, Recall@K, MAP) and propose an A/B test for online evaluation.</p>
+</li>
+<li>
+<p>Suggest benefits based on peer usage or metadata (e.g., department, tenure).</p>
+</li>
+</ol>
+</div>
+<p><strong>Deliverable</strong>: Recommender System Notebook with evaluation metrics and sample recommendations.</p>
+</section>
+</section>
+
+<section class="section sect3">
+  <header>
+    <h4 id="_phase_4_analytics_dashboard_and_recommendations">1.4.4. Phase 4: Analytics Dashboard and Recommendations</h4>
+    
+  </header>
+  <p>Integrate insights into an interactive dashboard and provide strategic recommendations.</p>
+
+<section class="section sect4">
+  <header>
+    <h5 id="_task_4_1_business_intelligence_dashboard">1.4.4.1. Task 4.1: Business Intelligence Dashboard</h5>
+    
+  </header>
+  <div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Build a dashboard (Streamlit/Gradio) with metrics (utilization, satisfaction, segments, ROI).</p>
+</li>
+<li>
+<p>Include interactive filters (e.g., <code>Department</code>, <code>Age</code>, <code>BenefitSubType</code>).</p>
+</li>
+<li>
+<p>Incorporate Generative AI insights (e.g., feedback summaries) in tooltips/annotations.</p>
+</li>
+<li>
+<p>Ensure mobile-friendly design (e.g., using Plotly Dash).</p>
+</li>
+<li>
+<p>Export as interactive HTML or PDF.</p>
+</li>
+</ol>
+</div>
+
+<div class="markdown-alert markdown-alert-tip " dir="auto">
+    <p class="markdown-alert-title" dir="auto">
+        <i class="mr-2 ph ph-lightbulb"></i>
+        
+        
+        Tip
+    </p>
+    <p dir="auto">
+        Implement caching (e.g., for processed datasets) to improve load times for repeated runs.
+    </p>
+</div>
+<p><strong>Deliverable</strong>: Interactive BI Dashboard (standalone deployed application that runs from command line).</p>
+</section>
+
+<section class="section sect4">
+  <header>
+    <h5 id="_task_4_2_strategic_recommendations_report">1.4.4.2. Task 4.2: Strategic Recommendations Report</h5>
+    
+  </header>
+  <div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Synthesize findings, emphasizing subcategory analysis (e.g., cut “Gym Membership: Tier 3 Partners”).</p>
+</li>
+<li>
+<p>Prioritize recommendations by impact (e.g., cost savings) and feasibility.</p>
+</li>
+<li>
+<p>Provide a 6-month roadmap (e.g., pilot new benefits, phase out low-ROI ones).</p>
+</li>
+<li>
+<p>Estimate cost savings (e.g., 10–20% of $12M) and ROI improvements.</p>
+</li>
+<li>
+<p>Address stakeholder needs (HR: retention, Finance: savings, Leadership: strategy).</p>
+</li>
+<li>
+<p>Include risk assessment (e.g., employee pushback).</p>
+</li>
+</ol>
+</div>
+<p><strong>Deliverable</strong>: Strategic Recommendations Report based on synthesized insights from the 4 phases.</p>
+</section>
+</section>
+</section>
+
+<section class="section sect2">
+  <header>
+    <h3 id="_conclusion">1.5. Conclusion</h3>
+    
+  </header>
+  <p>In this capstone, you will design and implement a <strong>Benefits Optimization System</strong> to help TechLance Solutions optimize its $12M benefits portfolio. By leveraging Data Science, Machine Learning, and Generative AI, you will deliver actionable insights to improve utilization, satisfaction, and cost efficiency. The final application should integrate all components into a user-friendly, command-line-executable tool for HR and leadership.</p>
+</section>
+</section>
+      
+
+      <div class="footnotes">
+        
+      </div>
+    </main>
+  </div>
+  <footer class="document-footer">
+    <section class="colophon container">
+      <p>© 2025 Ascendient, LLC</p>
+<p>Revision 2.0.0 published on 2025-07-23.</p>
+<p>No part of this book may be reproduced or used in any form or by any electronic, mechanical, or other means, currently available or developed in the future, including photocopying, recording, digital scanning, or sharing, or in any information storage or retrieval system, without permission in writing from the publisher.</p>
+<p><strong>Trademark Notice:</strong> Product or corporate names may be trademarks or registered trademarks, and are used only for identification and explanation without intent to infringe.</p>
+<p>To obtain authorization for any such activities (e.g., reprint rights, translation rights), to customize this book, or for other sales inquiries, please contact:</p>
+<p>Ascendient, LLC<br>
+1 California Street Suite 2900<br>
+San Francisco, CA 94111<br>
+<a href="https://www.ascendientlearning.com/" class="bare">https://www.ascendientlearning.com/</a></p>
+<p>USA: 1-877-517-6540, email: <a href="mailto:getinfousa@ascendientlearning.com">getinfousa@ascendientlearning.com</a><br>
+Canada: 1-877-812-8887 toll free, email: <a href="mailto:getinfo@ascendientlearning.com">getinfo@ascendientlearning.com</a></p>
+    </section>
+  </footer>
+  <script type="module">
+    /* Code for Syntax Highlighting with Shiki */
+    /*
+    import { codeToHtml } from 'https://esm.sh/shiki@1.0.0';
+
+    const codeElements = document.querySelectorAll('pre.highlight code');
+
+    codeElements.forEach(async (codeElement) => {
+      codeElement.innerHTML = await codeToHtml(codeElement.textContent, {
+        lang: codeElement.getAttribute('data-lang') || 'text', // Default to 'text' if no language is specified
+        themes: {
+          dark: 'github-dark',
+          light: 'github-light'
+        }
+      });
+    });
+    */
+  </script>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebarLinks = document.querySelectorAll('.document-sidebar nav ul li a');
+
+      sidebarLinks.forEach(link => {
+        const secondLevelList = link.nextElementSibling;
+
+        if (secondLevelList && secondLevelList.tagName === 'UL') {
+          link.parentElement.classList.add('closed');
+
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            link.parentElement.classList.toggle('closed');
+          });
+        }
+      });
+
+      function setActiveLink() {
+        const anchors = document.querySelectorAll('ul.sectlevel1 li a');
+        let current = "";
+
+        document.querySelectorAll('header h1, header h2, header h3, header h4').forEach((section) => {
+          if (pageYOffset + 0.66 * innerHeight >= section.offsetTop) {
+          current = section.getAttribute("id");
+          }
+        });
+
+        anchors.forEach(anchor => {
+          const targetId = anchor.getAttribute('href').substring(1);
+          const secondLevelList = anchor.nextElementSibling;
+
+
+          var isActive = targetId === current;
+          const parentActive = Array.from(anchor.parentElement.querySelectorAll('a')).some(a => a.getAttribute('href').substring(1) === current);
+          anchor.classList.toggle('active', isActive);
+          anchor.classList.toggle('parent-active', parentActive && !isActive);
+
+          isActive = isActive || parentActive;
+
+          anchor.parentElement.classList.toggle('closed', !isActive);
+
+          if (isActive && secondLevelList && secondLevelList.tagName === 'UL') {
+            secondLevelList.classList.remove('closed');
+          }
+
+          if (isActive) {
+            document.querySelector('.sidebar-content').scrollTo({ top: anchor.offsetTop - document.querySelector('.sidebar-content').clientHeight / 2 });
+          }
+        });
+      }
+
+      window.addEventListener('DOMContentLoaded', setActiveLink);
+      window.addEventListener('scroll', setActiveLink);
+    });
+
+
+    // Set the theme based on user's preference
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    const theme = savedTheme || (userPrefersDark ? 'dark' : 'light');
+    document.body.setAttribute('data-theme', theme);
+
+    // Save the theme preference
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+    
+
+    const sidebar = document.querySelector('.document-sidebar');
+    function closeSidebar() {
+      if (!sidebar.classList.contains('overlay')) {
+        return;
+      }
+
+      sidebar.classList.remove('overlay');
+    }
+
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('overlay');
+    }
+
+
+    document.querySelector('.overlay-background').addEventListener('click', closeSidebar);
+
+    document.querySelectorAll('.document-sidebar a').forEach(item => {
+      item.addEventListener('click', closeSidebar);
+    });
+  </script>
+</body>
+</html>
