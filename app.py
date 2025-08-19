@@ -32,6 +32,8 @@ st.title("📊 TechLance Solutions Benefits Dashboard")
 @st.cache_data
 def load_data():
     df = pd.read_csv("data/cleaned_data.csv")
+    # derive spend as cost × frequency
+    df["Benefit_Spend"] = df["BenefitCost"] * df["UsageFrequency"]
     return df
 
 df = load_data()
@@ -39,27 +41,25 @@ df = load_data()
 # Sidebar filters
 st.sidebar.header("Filters")
 selected_department = st.sidebar.multiselect("Select Department", df["Department"].unique())
-selected_segment = st.sidebar.multiselect("Select Segment", df["Segment"].unique())
+selected_benefit = st.sidebar.multiselect("Select Benefit SubType", df["BenefitSubType"].unique())
 
 # Apply filters
 filtered_df = df.copy()
 if selected_department:
     filtered_df = filtered_df[filtered_df["Department"].isin(selected_department)]
-if selected_segment:
-    filtered_df = filtered_df[filtered_df["Segment"].isin(selected_segment)]
+if selected_benefit:
+    filtered_df = filtered_df[filtered_df["BenefitSubType"].isin(selected_benefit)]
 
 # Metrics section
 st.subheader("Key Metrics")
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.metric("Total Employees", filtered_df["EmployeeID"].nunique())
 with col2:
     st.metric("Total Benefit Spend ($M)", round(filtered_df["Benefit_Spend"].sum() / 1e6, 2))
 with col3:
-    st.metric("Average Satisfaction", round(filtered_df["Satisfaction"].mean(), 2))
-with col4:
-    st.metric("ROI (%)", round(filtered_df["ROI"].mean(), 2))
+    st.metric("Average Satisfaction", round(filtered_df["SatisfactionScore"].mean(), 2))
 
 # Visualization - Benefit Spend by Department
 st.subheader("Benefit Spend by Department")
@@ -72,25 +72,25 @@ fig1 = px.bar(
 )
 st.plotly_chart(fig1, use_container_width=True)
 
-# Visualization - Satisfaction by Segment
-st.subheader("Employee Satisfaction by Segment")
+# Visualization - Satisfaction by Benefit SubType
+st.subheader("Employee Satisfaction by Benefit SubType")
 fig2 = px.box(
     filtered_df,
-    x="Segment",
-    y="Satisfaction",
-    color="Segment",
-    title="Satisfaction by Segment"
+    x="BenefitSubType",
+    y="SatisfactionScore",
+    color="BenefitSubType",
+    title="Satisfaction by Benefit SubType"
 )
 st.plotly_chart(fig2, use_container_width=True)
 
-# ROI Trend Over Time
-st.subheader("ROI Trend Over Time")
-fig3 = px.line(
-    filtered_df.groupby("Year")["ROI"].mean().reset_index(),
-    x="Year",
-    y="ROI",
-    markers=True,
-    title="ROI Trend"
+# Usage Frequency Trend (by BenefitType)
+st.subheader("Usage Frequency by Benefit Type")
+fig3 = px.bar(
+    filtered_df.groupby("BenefitType")["UsageFrequency"].sum().reset_index(),
+    x="BenefitType",
+    y="UsageFrequency",
+    color="BenefitType",
+    title="Usage Frequency by Benefit Type"
 )
 st.plotly_chart(fig3, use_container_width=True)
 
