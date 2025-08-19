@@ -25,6 +25,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+st.set_page_config(page_title="TechLance Benefits Dashboard", layout="wide")
+st.title("📊 TechLance Solutions Benefits Dashboard")
+
 # Load cleaned dataset from data folder
 @st.cache_data
 def load_data():
@@ -32,9 +35,6 @@ def load_data():
     return df
 
 df = load_data()
-
-st.set_page_config(page_title="TechLance Benefits Dashboard", layout="wide")
-st.title("📊 TechLance Solutions Benefits Dashboard")
 
 # Sidebar filters
 st.sidebar.header("Filters")
