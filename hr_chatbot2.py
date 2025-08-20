@@ -273,7 +273,6 @@ def create_visualization(result):
     """Create appropriate visualization based on query result"""
     
     if result['type'] == 'finance_spend':
-        # Create breakdown chart
         fig = px.bar(
             x=result['breakdown'].values,
             y=result['breakdown'].index,
@@ -285,7 +284,6 @@ def create_visualization(result):
         return fig
     
     elif result['type'] == 'generational_satisfaction':
-        # Create satisfaction comparison
         satisfaction_data = result['data'].groupby('age_group')['SatisfactionScore'].mean().reset_index()
         fig = px.bar(
             satisfaction_data,
@@ -298,7 +296,6 @@ def create_visualization(result):
         return fig
     
     elif result['type'] == '401k_analysis':
-        # Create 401k participation chart
         participation_data = result['data'].groupby('Department')['BenefitCost'].sum().reset_index()
         fig = px.pie(
             participation_data,
@@ -310,7 +307,6 @@ def create_visualization(result):
         return fig
     
     elif result['type'] == 'hr_roi':
-        # Create ROI comparison
         dept_roi = df.groupby('Department')['SatisfactionScore'].mean().reset_index()
         dept_roi['ROI_Proxy'] = (dept_roi['SatisfactionScore'] / df['SatisfactionScore'].mean()) * 2.1
         
@@ -326,10 +322,13 @@ def create_visualization(result):
     
     return None
 
-    # Chat interface
+
+# -------------------------------
+# CHAT INTERFACE (moved outside)
+# -------------------------------
+if st.session_state.current_view == 'chat':
     chat_container = st.container()
 
-    # User input
     user_input = st.text_input(
         "Ask about benefits spending, satisfaction, ROI, demographics...",
         key="user_input",
@@ -337,20 +336,20 @@ def create_visualization(result):
     )
 
     if st.button("Send", type="primary") or (user_input and st.session_state.get('user_input')):
-        if user_input or st.session_state.get('user_input'):
-            query = user_input or st.session_state.get('user_input', '')
-            
-            # Add user message
+        query = user_input or st.session_state.get('user_input', '')
+        
+        if query:
             st.session_state.messages.append({
                 'type': 'user',
                 'content': query,
                 'timestamp': datetime.now()
             })
             
-            # Process query
             with st.spinner('Analyzing data...'):
-                time.sleep(1)  # Simulate processing time
+                time.sleep(1)
                 result = process_query(query)
+            
+            # build response (your logic continues here...)
             
             # Generate bot response
             if result['type'] == 'finance_spend':
