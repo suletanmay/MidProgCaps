@@ -5,6 +5,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
 import time
+import os
 
 # Page configuration
 st.set_page_config(
@@ -61,8 +62,10 @@ if 'query_history' not in st.session_state:
 @st.cache_data
 def load_data():
     """Load the cleaned dataset from CSV"""
+    base_dir = os.path.dirname(__file__)
+    file_path = os.path.join(base_dir, "data", "cleaned_dataset.csv")
     
-    df = pd.read_csv("cleaned_dataset.csv")
+    df = pd.read_csv("data/cleaned_dataset.csv")
     
     # Add age groups
     df['age_group'] = df['Age'].apply(lambda x: 
