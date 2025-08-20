@@ -441,7 +441,91 @@ if st.session_state.current_view == 'chat':
 
 else:
     # ANALYTICS DASHBOARD
-    st.markdown("## 📈 Live Analytics Dashboards")
+    st.markdown("## 📈 Live Benefits Analytics Dashboard")
+
+    # Derived columns for metrics
+    df["Utilization"] = df["UsageFrequency"]
+    df["Satisfaction"] = df["SatisfactionScore"]
+    df["Benefit_Spend"] = df["BenefitCost"]
+    df["ROI"] = (df["SatisfactionScore"] / (df["BenefitCost"] + 1)) * 100
+
+    # Chart toolbar config
+    plotly_config = {
+        "displaylogo": False,
+        "displayModeBar": True,
+    }
+
+    # ---- Visualization 1: Benefit Spend by Department ----
+    st.subheader("💰 Benefit Spend by Department")
+    dep_filter = st.multiselect(
+        "Filter by Department:",
+        options=df["Department"].dropna().unique(),
+        key="dep_filter_spend"
+    )
+    filtered1 = df[df["Department"].isin(dep_filter)] if dep_filter else df
+    fig1 = px.bar(
+        filtered1.groupby("Department")["Benefit_Spend"].sum().reset_index(),
+        x="Department", y="Benefit_Spend", color="Department",
+        title="Total Benefit Spend by Department"
+    )
+    st.plotly_chart(fig1, use_container_width=True, config=plotly_config)
+
+    # ---- Visualization 2: Satisfaction by Age Group ----
+    st.subheader("😊 Satisfaction by Age Group")
+    age_filter = st.multiselect(
+        "Filter by Age Group:",
+        options=df["age_group"].dropna().unique(),
+        key="age_filter_satisfaction"
+    )
+    filtered2 = df[df["age_group"].isin(age_filter)] if age_filter else df
+    fig2 = px.box(
+        filtered2,
+        x="age_group", y="Satisfaction", color="age_group",
+        title="Satisfaction Score Distribution by Age Group"
+    )
+    st.plotly_chart(fig2, use_container_width=True, config=plotly_config)
+
+    # ---- Visualization 3: Utilization by Benefit SubType ----
+    st.subheader("📊 Utilization by Benefit SubType")
+    benefit_filter = st.multiselect(
+        "Filter by Benefit SubType:",
+        options=df["BenefitSubType"].dropna().unique(),
+        key="benefit_filter_utilization"
+    )
+    filtered3 = df[df["BenefitSubType"].isin(benefit_filter)] if benefit_filter else df
+    fig3 = px.bar(
+        filtered3.groupby("BenefitSubType")["Utilization"].mean().reset_index(),
+        x="BenefitSubType", y="Utilization", color="BenefitSubType",
+        title="Average Utilization by Benefit SubType"
+    )
+    st.plotly_chart(fig3, use_container_width=True, config=plotly_config)
+
+    # ---- Visualization 4: ROI by Department ----
+    st.subheader("📈 ROI Proxy by Department")
+    dep_filter2 = st.multiselect(
+        "Filter by Department:",
+        options=df["Department"].dropna().unique(),
+        key="dep_filter_roi"
+    )
+    filtered4 = df[df["Department"].isin(dep_filter2)] if dep_filter2 else df
+    fig4 = px.bar(
+        filtered4.groupby("Department")["ROI"].mean().reset_index(),
+        x="Department", y="ROI", color="Department",
+        title="ROI Proxy (%) by Department"
+    )
+    st.plotly_chart(fig4, use_container_width=True, config=plotly_config)
+
+    # ---- Optional: Insights Table ----
+    st.subheader("💡 Top Performing Benefits by Satisfaction")
+    top_benefits = (
+        df.groupby("BenefitSubType")["Satisfaction"]
+        .mean()
+        .sort_values(ascending=False)
+        .head(5)
+        .reset_index()
+        .rename(columns={"Satisfaction": "Avg Satisfaction"})
+    )
+    st.table(top_benefits)
     
     # Key Performance Indicators
     st.markdown("### 📊 Key Performance Indicators")
