@@ -151,7 +151,7 @@ with col1:
         st.session_state.current_view = 'chat'
 
 with col2:
-    if st.button("📈 Live Analytics Dashboards", 
+    if st.button("📈 Benefits Analytics Dashboards", 
                 key="analytics_view", 
                 use_container_width=True,
                 type="primary" if st.session_state.current_view == 'analytics' else "secondary"):
@@ -440,92 +440,69 @@ if st.session_state.current_view == 'chat':
                         st.plotly_chart(fig, use_container_width=True)
 
 else:
-    # ANALYTICS DASHBOARD
-    st.markdown("## 📈 Live Benefits Analytics Dashboard")
+    
+    # ---------------------------
+    # 📊 Unified Analytics Chart
+    # ---------------------------
+    st.markdown("## 📈 Benefits Analytics Dashboard")
 
-    # Derived columns for metrics
+    # Derived columns
     df["Utilization"] = df["UsageFrequency"]
     df["Satisfaction"] = df["SatisfactionScore"]
     df["Benefit_Spend"] = df["BenefitCost"]
     df["ROI"] = (df["SatisfactionScore"] / (df["BenefitCost"] + 1)) * 100
 
     # Chart toolbar config
-    plotly_config = {
-        "displaylogo": False,
-        "displayModeBar": True,
-    }
+    plotly_config = {"displaylogo": False, "displayModeBar": True}
 
-    # ---- Visualization 1: Benefit Spend by Department ----
-    st.subheader("💰 Benefit Spend by Department")
-    dep_filter = st.multiselect(
-        "Filter by Department:",
-        options=df["Department"].dropna().unique(),
-        key="dep_filter_spend"
-    )
-    filtered1 = df[df["Department"].isin(dep_filter)] if dep_filter else df
-    fig1 = px.bar(
-        filtered1.groupby("Department")["Benefit_Spend"].sum().reset_index(),
-        x="Department", y="Benefit_Spend", color="Department",
-        title="Total Benefit Spend by Department"
-    )
-    st.plotly_chart(fig1, use_container_width=True, config=plotly_config)
+    # Select dimensions
+    st.subheader("🔍 Custom Analytics Explorer")
 
-    # ---- Visualization 2: Satisfaction by Age Group ----
-    st.subheader("😊 Satisfaction by Age Group")
-    age_filter = st.multiselect(
-        "Filter by Age Group:",
-        options=df["age_group"].dropna().unique(),
-        key="age_filter_satisfaction"
-    )
-    filtered2 = df[df["age_group"].isin(age_filter)] if age_filter else df
-    fig2 = px.box(
-        filtered2,
-        x="age_group", y="Satisfaction", color="age_group",
-        title="Satisfaction Score Distribution by Age Group"
-    )
-    st.plotly_chart(fig2, use_container_width=True, config=plotly_config)
+    x_dims = ["Department", "age_group", "BenefitSubType", "tenure_group"]
+    y_metrics = ["Benefit_Spend", "Satisfaction", "Utilization", "ROI"]
 
-    # ---- Visualization 3: Utilization by Benefit SubType ----
-    st.subheader("📊 Utilization by Benefit SubType")
-    benefit_filter = st.multiselect(
-        "Filter by Benefit SubType:",
-        options=df["BenefitSubType"].dropna().unique(),
-        key="benefit_filter_utilization"
+    x_selection = st.multiselect(
+        "Choose up to 2 categorical dimensions (x-axis / grouping):",
+        options=x_dims,
+        default=["Department"],  # default one
+        max_selections=2,
+        key="x_selection"
     )
-    filtered3 = df[df["BenefitSubType"].isin(benefit_filter)] if benefit_filter else df
-    fig3 = px.bar(
-        filtered3.groupby("BenefitSubType")["Utilization"].mean().reset_index(),
-        x="BenefitSubType", y="Utilization", color="BenefitSubType",
-        title="Average Utilization by Benefit SubType"
-    )
-    st.plotly_chart(fig3, use_container_width=True, config=plotly_config)
 
-    # ---- Visualization 4: ROI by Department ----
-    st.subheader("📈 ROI Proxy by Department")
-    dep_filter2 = st.multiselect(
-        "Filter by Department:",
-        options=df["Department"].dropna().unique(),
-        key="dep_filter_roi"
+    y_selection = st.selectbox(
+        "Choose numeric metric (y-axis):",
+        options=y_metrics,
+        index=0,
+        key="y_selection"
     )
-    filtered4 = df[df["Department"].isin(dep_filter2)] if dep_filter2 else df
-    fig4 = px.bar(
-        filtered4.groupby("Department")["ROI"].mean().reset_index(),
-        x="Department", y="ROI", color="Department",
-        title="ROI Proxy (%) by Department"
-    )
-    st.plotly_chart(fig4, use_container_width=True, config=plotly_config)
 
-    # ---- Optional: Insights Table ----
-    st.subheader("💡 Top Performing Benefits by Satisfaction")
-    top_benefits = (
-        df.groupby("BenefitSubType")["Satisfaction"]
-        .mean()
-        .sort_values(ascending=False)
-        .head(5)
-        .reset_index()
-        .rename(columns={"Satisfaction": "Avg Satisfaction"})
-    )
-    st.table(top_benefits)
+    # Build chart data
+    if len(x_selection) == 0:
+        st.warning("👉 Please select at least one categorical dimension for X-axis.")
+    else:
+        group_cols = x_selection
+        grouped = df.groupby(group_cols)[y_selection].mean().reset_index()
+
+        # If 1 dimension → simple bar
+        if len(x_selection) == 1:
+            fig = px.bar(
+                grouped,
+                x=x_selection[0], y=y_selection, color=x_selection[0],
+                title=f"{y_selection} by {x_selection[0]}"
+            )
+
+        # If 2 dimensions → grouped bar
+        else:
+            fig = px.bar(
+                grouped,
+                x=x_selection[0], y=y_selection, color=x_selection[1],
+                barmode="group",
+                title=f"{y_selection} by {x_selection[0]} and {x_selection[1]}"
+            )
+
+        fig.update_layout(height=500)
+        st.plotly_chart(fig, use_container_width=True, config=plotly_config)
+
     
     # Key Performance Indicators
     st.markdown("### 📊 Key Performance Indicators")
@@ -558,147 +535,6 @@ else:
             value="2.1x",
             delta="0.2x improvement"
         )
-    
-    # Charts Row 1
-    chart_col1, chart_col2 = st.columns(2)
-    
-    with chart_col1:
-        st.markdown("### 🏢 Department Spending Analysis")
-        dept_spending = df.groupby('Department')['BenefitCost'].sum().sort_values(ascending=False)
-        fig_dept = px.bar(
-            x=dept_spending.values,
-            y=dept_spending.index,
-            orientation='h',
-            title="Benefits Spending by Department",
-            labels={'x': 'Total Spending ($)', 'y': 'Department'}
-        )
-        fig_dept.update_layout(height=400)
-        st.plotly_chart(fig_dept, use_container_width=True)
-    
-    with chart_col2:
-        st.markdown("### 👥 Generational Satisfaction Analysis")
-        age_satisfaction = df.groupby('age_group')['SatisfactionScore'].mean().reset_index()
-        fig_age = px.bar(
-            age_satisfaction,
-            x='age_group',
-            y='SatisfactionScore',
-            title="Average Satisfaction by Generation",
-            labels={'SatisfactionScore': 'Satisfaction Score', 'age_group': 'Generation'},
-            color='SatisfactionScore',
-            color_continuous_scale='viridis'
-        )
-        fig_age.update_layout(height=400)
-        st.plotly_chart(fig_age, use_container_width=True)
-    
-    # Charts Row 2
-    chart_col3, chart_col4 = st.columns(2)
-    
-    with chart_col3:
-        st.markdown("### 🎯 Benefits Type Performance")
-        benefit_performance = df.groupby('BenefitType').agg({
-            'BenefitCost': 'sum',
-            'SatisfactionScore': 'mean'
-        }).reset_index()
-        
-        fig_benefits = px.scatter(
-            benefit_performance,
-            x='BenefitCost',
-            y='SatisfactionScore',
-            size='BenefitCost',
-            color='BenefitType',
-            title="Benefits Cost vs Satisfaction",
-            labels={'BenefitCost': 'Total Cost ($)', 'SatisfactionScore': 'Avg Satisfaction'}
-        )
-        fig_benefits.update_layout(height=400)
-        st.plotly_chart(fig_benefits, use_container_width=True)
-    
-    with chart_col4:
-        st.markdown("### 📈 Usage Frequency Distribution")
-        usage_dist = df['UsageFrequency'].value_counts()
-        fig_usage = px.pie(
-            values=usage_dist.values,
-            names=usage_dist.index,
-            title="Benefits Usage Frequency Distribution"
-        )
-        fig_usage.update_layout(height=400)
-        st.plotly_chart(fig_usage, use_container_width=True)
-    
-    # Charts Row 3
-    st.markdown("### 🔍 Advanced Analytics")
-    
-    # Tenure vs Satisfaction Analysis
-    tenure_col1, tenure_col2 = st.columns(2)
-    
-    with tenure_col1:
-        st.markdown("#### 📊 Tenure Impact on Satisfaction")
-        tenure_satisfaction = df.groupby('tenure_group')['SatisfactionScore'].mean().reset_index()
-        fig_tenure = px.bar(
-            tenure_satisfaction,
-            x='tenure_group',
-            y='SatisfactionScore',
-            title="Satisfaction by Tenure Group",
-            color='SatisfactionScore',
-            color_continuous_scale='blues'
-        )
-        fig_tenure.update_layout(height=350)
-        st.plotly_chart(fig_tenure, use_container_width=True)
-    
-    with tenure_col2:
-        st.markdown("#### 💰 Cost Distribution by Department")
-        # Box plot for cost distribution
-        fig_box = px.box(
-            df,
-            x='Department',
-            y='BenefitCost',
-            title="Benefits Cost Distribution by Department"
-        )
-        fig_box.update_layout(height=350)
-        st.plotly_chart(fig_box, use_container_width=True)
-    
-    # Heatmap Analysis
-    st.markdown("#### 🔥 Correlation Heatmap: Department vs Benefit Type")
-    
-    # Create department-benefit heatmap data
-    heatmap_data = df.groupby(['Department', 'BenefitType'])['BenefitCost'].sum().reset_index()
-    heatmap_pivot = heatmap_data.pivot(index='Department', columns='BenefitType', values='BenefitCost').fillna(0)
-    
-    fig_heatmap = px.imshow(
-        heatmap_pivot.values,
-        labels=dict(x="Benefit Type", y="Department", color="Spending ($)"),
-        x=heatmap_pivot.columns,
-        y=heatmap_pivot.index,
-        title="Benefits Spending Heatmap: Department vs Benefit Type",
-        aspect="auto"
-    )
-    fig_heatmap.update_layout(height=400)
-    st.plotly_chart(fig_heatmap, use_container_width=True)
-    
-    # Summary Analytics Table
-    st.markdown("### 📋 Department Summary Analytics")
-    
-    summary_table = df.groupby('Department').agg({
-        'EmployeeID': 'nunique',
-        'BenefitCost': ['sum', 'mean'],
-        'SatisfactionScore': 'mean',
-        'UsageFrequency': lambda x: (x == 'High').sum()
-    }).round(2)
-    
-    # Flatten column names
-    summary_table.columns = ['Employees', 'Total_Spend', 'Avg_Cost_Per_Employee', 'Avg_Satisfaction', 'High_Usage_Count']
-    summary_table['Cost_Per_Employee'] = summary_table['Total_Spend'] / summary_table['Employees']
-    summary_table['ROI_Proxy'] = (summary_table['Avg_Satisfaction'] / avg_satisfaction) * 2.1
-    
-    # Format for display
-    display_table = summary_table.copy()
-    display_table['Total_Spend'] = display_table['Total_Spend'].apply(lambda x: f"${x:,.0f}")
-    display_table['Cost_Per_Employee'] = display_table['Cost_Per_Employee'].apply(lambda x: f"${x:,.0f}")
-    display_table['Avg_Satisfaction'] = display_table['Avg_Satisfaction'].apply(lambda x: f"{x:.1f}/5")
-    display_table['ROI_Proxy'] = display_table['ROI_Proxy'].apply(lambda x: f"{x:.1f}x")
-    
-    st.dataframe(
-        display_table[['Employees', 'Total_Spend', 'Cost_Per_Employee', 'Avg_Satisfaction', 'High_Usage_Count', 'ROI_Proxy']],
-        use_container_width=True
-    )
 
 # Knowledge Base Section
 if st.session_state.query_history:
