@@ -59,27 +59,10 @@ if 'query_history' not in st.session_state:
 
 # Mock dataset based on your structure
 @st.cache_data
-def load_mock_data():
-    """Generate mock data matching your dataset structure"""
-    np.random.seed(42)
+def load_data():
+    """Load the cleaned dataset from CSV"""
     
-    departments = ['Finance', 'Engineering', 'Marketing', 'HR', 'Sales']
-    benefit_types = ['Healthcare', '401k', 'Professional Development', 'Wellness', 'Transportation']
-    
-    # Generate sample data
-    n_records = 1000
-    data = {
-        'EmployeeID': [f'EMP{i:04d}' for i in range(1, n_records + 1)],
-        'Department': np.random.choice(departments, n_records),
-        'Age': np.random.randint(22, 65, n_records),
-        'BenefitType': np.random.choice(benefit_types, n_records),
-        'BenefitCost': np.random.normal(15000, 5000, n_records).clip(5000, 50000),
-        'SatisfactionScore': np.random.normal(4.0, 0.8, n_records).clip(1, 5),
-        'UsageFrequency': np.random.choice(['Low', 'Medium', 'High'], n_records),
-        'Tenure': np.random.randint(1, 15, n_records)
-    }
-    
-    df = pd.DataFrame(data)
+    df = pd.read_csv("cleaned_dataset.csv")
     
     # Add age groups
     df['age_group'] = df['Age'].apply(lambda x: 
@@ -98,7 +81,7 @@ def load_mock_data():
     return df
 
 # Load data
-df = load_mock_data()
+df = load_data()
 
 # Header
 st.markdown("""
