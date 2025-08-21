@@ -591,32 +591,6 @@ else:
             st.markdown("💡 **Top 3 Recommendations**")
             for r in recs:
                 st.write(f"- {r}")
-
-        # Chart section
-        st.markdown("### 📊 Visualization")
-
-        chart_type = st.radio("Choose chart type", ["Bar Chart", "Pie Chart"], horizontal=True)
-
-        benefit_data = pd.DataFrame({
-            "Benefit": top_benefits + bot_benefits,
-            "Category": ["Top"]*3 + ["Bottom"]*3,
-            "Count": [3, 2, 1, 1, 2, 3]  # You can replace with actual usage counts if available
-        })
-
-        if chart_type == "Bar Chart":
-            chart = alt.Chart(benefit_data).mark_bar().encode(
-                x="Benefit",
-                y="Count",
-                color="Category"
-            )
-        else:  # Pie chart
-            chart = alt.Chart(benefit_data).mark_arc().encode(
-                theta="Count",
-                color="Benefit",
-                tooltip=["Benefit", "Category"]
-            )
-
-        st.altair_chart(chart, use_container_width=True)
     
 # Knowledge Base Section
 if st.session_state.query_history:
