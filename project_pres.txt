@@ -4,3 +4,14 @@ lets say I reallocate 401k spending
 
 for the actionable recs, what metrics are we looking at that will help us make recommendations
 
+TANMAY use this for budget reallocation in dashboard
+
+# Display current (before) KPIs table
+current_kpis_display = current_kpis[['BenefitType','BenefitSubType','CurrentBudget','CurrentUtilization','CurrentSatisfaction']].copy()
+print('Current (Before) KPIs:')
+display(current_kpis_display.head(20))
+
+# Display predicted (after) KPIs table
+predicted_kpis_display = predicted_df[['BenefitType','BenefitSubType','BudgetAllocated','PredictedUtilization','PredictedSatisfaction','CostPerEmployee','PredictedROI']].copy()
+print('Predicted (After) KPIs:')
+display(predicted_kpis_display.head(20))
