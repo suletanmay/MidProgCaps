@@ -450,6 +450,15 @@ if st.session_state.current_view == 'chat':
                     fig = create_visualization(message['visualization'])
                     if fig:
                         st.plotly_chart(fig, use_container_width=True)
+                        
+    # Footer
+    st.markdown("---")
+    st.markdown("""
+    <div style="text-align: center; color: #666;">
+        <p>💡 This chatbot uses RAG (Retrieval-Augmented Generation) to provide data-driven insights from your benefits dataset</p>
+        <p>All queries and analytics are stored for knowledge base creation and continuous improvement</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 else:
     
@@ -608,12 +617,3 @@ if st.session_state.query_history:
         file_name=f"hr_chatbot_queries_{datetime.now().strftime('%Y%m%d')}.csv",
         mime="text/csv"
     )
-
-# Footer
-st.markdown("---")
-st.markdown("""
-<div style="text-align: center; color: #666;">
-    <p>💡 This chatbot uses RAG (Retrieval-Augmented Generation) to provide data-driven insights from your benefits dataset</p>
-    <p>All queries and analytics are stored for knowledge base creation and continuous improvement</p>
-</div>
-""", unsafe_allow_html=True)
