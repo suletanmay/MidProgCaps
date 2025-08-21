@@ -599,8 +599,9 @@ else:
         with colC:
             st.markdown("💡 **Top 3 Recommendations**")
             for r in recs:
-                st.write(f"- {r}")
-    
+                if pd.notna(r) and str(r).strip() != "":   # filters out NaN and empty strings
+                    st.write(f"- {r}")
+
 # Knowledge Base Section
 if st.session_state.query_history:
     st.markdown("---")
