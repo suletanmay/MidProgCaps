@@ -88,7 +88,7 @@ def load_cleaned_data():
 def load_recommendation_data():
     """Load the cleaned dataset from CSV"""
     base_dir = os.path.dirname(__file__)
-    file_path = os.path.join(base_dir, "data", "cluster_recommendation_data.csv")
+    file_path = os.path.join(base_dir, "data", "cluster_recommendation.csv")
     
     df = pd.read_csv(file_path)
     
