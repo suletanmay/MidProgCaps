@@ -6,6 +6,8 @@ import plotly.graph_objects as go
 from datetime import datetime
 import time
 import os
+import altair as alt
+
 
 # Page configuration
 st.set_page_config(
@@ -60,7 +62,7 @@ if 'query_history' not in st.session_state:
 
 # Mock dataset based on your structure
 @st.cache_data
-def load_data():
+def load_cleaned_data():
     """Load the cleaned dataset from CSV"""
     base_dir = os.path.dirname(__file__)
     file_path = os.path.join(base_dir, "data", "cleaned_data.csv")
@@ -83,8 +85,18 @@ def load_data():
     
     return df
 
+def load_recommendation_data():
+    """Load the cleaned dataset from CSV"""
+    base_dir = os.path.dirname(__file__)
+    file_path = os.path.join(base_dir, "data", "cluster_recommendation_data.csv")
+    
+    df = pd.read_csv(file_path)
+    
+    return df
+
 # Load data
-df = load_data()
+df = load_cleaned_data()
+df2 = load_recommendation_data()
 
 # Header
 st.markdown("""
@@ -536,6 +548,76 @@ else:
             delta="0.2x improvement"
         )
 
+    st.markdown("## 🎯 Custom Employee Persona & Recommendations")
+
+    # Dropdowns for persona creation
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        dept = st.selectbox("Select Department", sorted(df2["Department"].unique()))
+    with col2:
+        age = st.selectbox("Select Age Group", sorted(df2["age_group"].unique()))
+    with col3:
+        tenure = st.selectbox("Select Tenure Group", sorted(df2["tenure_group"].unique()))
+
+    # Filter dataframe
+    persona = df2[
+        (df2["Department"] == dept) &
+        (df2["age_group"] == age) &
+        (df2["tenure_group"] == tenure)
+    ]
+
+    if persona.empty:
+        st.warning("⚠️ No data found for this combination.")
+    else:
+        row = persona.iloc[0]
+
+        st.subheader(f"📌 Employee Segment: {row['employee_segment']}")
+
+        # Top and Bottom Benefits
+        top_benefits = [row["top1"], row["top2"], row["top3"]]
+        bot_benefits = [row["bot1"], row["bot2"], row["bot3"]]
+        recs = [row["seg_rec1"], row["seg_rec2"], row["seg_rec3"]]
+
+        colA, colB, colC = st.columns(3)
+        with colA:
+            st.markdown("✅ **Top 3 Used Benefits**")
+            for t in top_benefits:
+                st.write(f"- {t}")
+        with colB:
+            st.markdown("⚠️ **Bottom 3 Used Benefits**")
+            for b in bot_benefits:
+                st.write(f"- {b}")
+        with colC:
+            st.markdown("💡 **Top 3 Recommendations**")
+            for r in recs:
+                st.write(f"- {r}")
+
+        # Chart section
+        st.markdown("### 📊 Visualization")
+
+        chart_type = st.radio("Choose chart type", ["Bar Chart", "Pie Chart"], horizontal=True)
+
+        benefit_data = pd.DataFrame({
+            "Benefit": top_benefits + bot_benefits,
+            "Category": ["Top"]*3 + ["Bottom"]*3,
+            "Count": [3, 2, 1, 1, 2, 3]  # You can replace with actual usage counts if available
+        })
+
+        if chart_type == "Bar Chart":
+            chart = alt.Chart(benefit_data).mark_bar().encode(
+                x="Benefit",
+                y="Count",
+                color="Category"
+            )
+        else:  # Pie chart
+            chart = alt.Chart(benefit_data).mark_arc().encode(
+                theta="Count",
+                color="Benefit",
+                tooltip=["Benefit", "Category"]
+            )
+
+        st.altair_chart(chart, use_container_width=True)
+    
 # Knowledge Base Section
 if st.session_state.query_history:
     st.markdown("---")
