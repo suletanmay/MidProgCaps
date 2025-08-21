@@ -15,3 +15,30 @@ display(current_kpis_display.head(20))
 predicted_kpis_display = predicted_df[['BenefitType','BenefitSubType','BudgetAllocated','PredictedUtilization','PredictedSatisfaction','CostPerEmployee','PredictedROI']].copy()
 print('Predicted (After) KPIs:')
 display(predicted_kpis_display.head(20))
+
+
+
+Slide 11: Key Findings
+
+Slide 12: Cost vs Usage
+
+
+
+
+
+Slide 13: Recommendations
+
+High Priority
+
+Slide 14: Portfoilio Rebalancing
+  #include a visualization (maybe of current spend vs optimized spend)#
+  Pitch: by analyzing usage data, we identified 566,516 tied up in underperforming benefits (include visual of where you got this number). Rebalancing the portfolio will mean we reallocate those funds to programs employees     actually use and value, addressing the concern of satisfaction and retention without increasing overall costs. TechLance's overall ROI of benefits would also show improvement.
+  #provide example: oh if funds were focused here instead of here....#
+  we can pilot reallocation in one direction and set up quarterly / yearly benefits usage reviews for continuous optimization
+
+Slide 15: Personalization
+  #include a visualization (of clustering groups) or example of a cluster and its data)
+  Pitch: Another high priority recommendation is personalization. To push away the benefits being a one-size fits all program, we segment employees into key groups determined by factors like age, tenure, and department. This way we can tailor specific benefits recommendations and meet the employees' unique needs while maximizing usage. this will further drive higher satisfaction, retention, and smarter spending. #briefly explain / show how based on a cluster we would choose what benefit#?
+
+Slide 16: Cost Efficiency
+  
