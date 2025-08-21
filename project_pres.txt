@@ -55,4 +55,4 @@ Slide 17: Usage Enhancement
 This is easy to have as an ongoing project, checking in quarterly to see improvements
 #include visualization of underused but high impact benefits#
 
-
+The model begins with cleaned employee–benefit data, including usage frequency, satisfaction scores, and the number of employees using each benefit. We then apply both the current and the newly proposed budget allocations, ensuring the percentages remain balanced at 100%. For each benefit, the model calculates key metrics: utilization (average employee usage), satisfaction (employee sentiment), and cost per employee (budget divided by employee count). Using these values, we estimate a return-on-investment score, which is proportional to utilization multiplied by satisfaction, divided by cost per employee. This framework allows us to directly compare how reallocating the budget changes overall efficiency and the value employees receive from each benefit.
