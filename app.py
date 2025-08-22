@@ -688,7 +688,6 @@ else:
         # -------------------------------
         if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
             y_column = "BenefitSubType_Score"
-            
             df_selected = df3 if score_option == "Best" else df4
 
             top_subtypes = (
@@ -699,30 +698,31 @@ else:
                 .reset_index()
             )
 
-            # Remove rows with zero or NaN scores
+            # Remove any rows with 0 or NaN scores to avoid plotting them
             top_subtypes = top_subtypes[top_subtypes[y_column] != 0]
             top_subtypes = top_subtypes.dropna(subset=[y_column])
 
-            
             benefit_types = top_subtypes["BenefitType"].unique()
             subtypes = top_subtypes["BenefitSubType"].unique()
-            
+
             fig = go.Figure()
-            
+
             for subtype in subtypes:
                 y_values = []
                 text_values = []
                 for bt in benefit_types:
                     match = top_subtypes[
-                        (top_subtypes["BenefitType"] == bt) & (top_subtypes["BenefitSubType"] == subtype)
+                        (top_subtypes["BenefitType"] == bt) &
+                        (top_subtypes["BenefitSubType"] == subtype)
                     ]
                     if not match.empty:
-                        y_values.append(match[y_column].values[0])
-                        text_values.append(match[y_column].values[0])
+                        y_val = match[y_column].values[0]
+                        y_values.append(y_val)
+                        text_values.append(y_val)
                     else:
-                        y_values.append(None)      # no bar
-                        text_values.append(None)   # no label
-                
+                        y_values.append(None)       # no bar
+                        text_values.append(None)    # no label
+
                 fig.add_trace(
                     go.Bar(
                         x=benefit_types,
@@ -732,10 +732,10 @@ else:
                         text=text_values,
                         textposition='outside',
                         textfont=dict(size=16),
-                        texttemplate='%{text:.2f}'  # 2 decimals
+                        texttemplate='%{text:.2f}'
                     )
                 )
-            
+
             fig.update_layout(
                 barmode='group',
                 height=700,
@@ -745,10 +745,9 @@ else:
                 bargroupgap=0.25,
                 legend_title="Benefit Subtype"
             )
-            
             fig.update_xaxes(tickangle=-30)
-            
             st.plotly_chart(fig, use_container_width=True, config=plotly_config)
+
 
             
         # -------------------------------
