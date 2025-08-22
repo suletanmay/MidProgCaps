@@ -698,6 +698,11 @@ else:
                 .nlargest(3)
                 .reset_index()
             )
+
+            # Remove rows with zero or NaN scores
+            top_subtypes = top_subtypes[top_subtypes[y_column] != 0]
+            top_subtypes = top_subtypes.dropna(subset=[y_column])
+
             
             benefit_types = top_subtypes["BenefitType"].unique()
             subtypes = top_subtypes["BenefitSubType"].unique()
