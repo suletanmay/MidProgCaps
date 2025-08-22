@@ -715,14 +715,13 @@ else:
                         (top_subtypes["BenefitType"] == bt) &
                         (top_subtypes["BenefitSubType"] == subtype)
                     ]
-            if not match.empty and match[y_column].values[0] != 0:
-                y_val = match[y_column].values[0]
-                y_values.append(y_val)
-                text_values.append(f"{y_val:.2f}")  # text only if y_val > 0
-            else:
-                y_values.append(None)       # no bar
-                text_values.append("")       # empty string instead of None
-
+                    if not match.empty:
+                        y_val = match[y_column].values[0]
+                        y_values.append(y_val)
+                        text_values.append(y_val)
+                    else:
+                        y_values.append(None)       # no bar
+                        text_values.append(None)    # no label
 
                 fig.add_trace(
                     go.Bar(
@@ -730,12 +729,12 @@ else:
                         y=y_values,
                         name=subtype,
                         width=0.3,
-                        text=text_values,
+                        text=[f"{v:.2f}" if v is not None else "" for v in text_values],
                         textposition='outside',
-                        textfont=dict(size=16),
-                        texttemplate='%{text:.2f}'
+                        textfont=dict(size=16)
                     )
                 )
+
 
             fig.update_layout(
                 barmode='group',
