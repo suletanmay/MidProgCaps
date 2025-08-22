@@ -715,13 +715,14 @@ else:
                         (top_subtypes["BenefitType"] == bt) &
                         (top_subtypes["BenefitSubType"] == subtype)
                     ]
-                    if not match.empty:
-                        y_val = match[y_column].values[0]
-                        y_values.append(y_val)
-                        text_values.append(y_val)
-                    else:
-                        y_values.append(None)       # no bar
-                        text_values.append(None)    # no label
+            if not match.empty and match[y_column].values[0] != 0:
+                y_val = match[y_column].values[0]
+                y_values.append(y_val)
+                text_values.append(f"{y_val:.2f}")  # text only if y_val > 0
+            else:
+                y_values.append(None)       # no bar
+                text_values.append("")       # empty string instead of None
+
 
                 fig.add_trace(
                     go.Bar(
