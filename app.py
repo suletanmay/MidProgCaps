@@ -614,8 +614,6 @@ else:
     # Display full table
     # -------------------------------
     st.markdown("## 📝 All Benefits & Subtypes with Sentiment Scores")
-    st.dataframe(df3.sort_values(by='BenefitType_Score', ascending=False))
-
     st.markdown(
         "Explore **Benefit Types** and **Subtypes** along with their sentiment scores. "
         "Use the controls below to customize your view."
