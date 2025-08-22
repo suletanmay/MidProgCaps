@@ -93,10 +93,21 @@ def load_recommendation_data():
     
     return df
 
-def load_sentiment_analysis_data():
+def load_best_sentiment_analysis_data():
     """Load the cleaned dataset from CSV and normalize column names."""
     base_dir = os.path.dirname(__file__)
     file_path = os.path.join(base_dir, "data", "sentiment_analysis_best_benefits.csv")
+    
+    df = pd.read_csv(file_path)
+    
+    # Normalize column names: strip spaces, replace spaces with underscores
+    df.columns = [col.strip().replace(" ", "_") for col in df.columns]
+    
+    return df
+def load_worst_sentiment_analysis_data():
+    """Load the cleaned dataset from CSV and normalize column names."""
+    base_dir = os.path.dirname(__file__)
+    file_path = os.path.join(base_dir, "data", "sentiment_analysis_worst_benefits.csv")
     
     df = pd.read_csv(file_path)
     
@@ -108,7 +119,8 @@ def load_sentiment_analysis_data():
 # Load data
 df = load_cleaned_data()
 df2 = load_recommendation_data()
-df3 = load_sentiment_analysis_data()
+df3 = load_best_sentiment_analysis_data()
+df4 = load_worst_sentiment_analysis_data()
 
 # Header
 st.markdown("""
@@ -629,6 +641,18 @@ else:
     plotly_config = {"displaylogo": False, "displayModeBar": True}
 
     # -------------------------------
+    # Best / Worst selection
+    # -------------------------------
+    score_option = st.selectbox(
+        "Select which scores to display:",
+        options=["Best", "Worst"],
+        index=0
+    )
+
+    # Choose the dataframe based on selection
+    df_selected = df3 if score_option == "Best" else df4
+
+    # -------------------------------
     # X-axis selection (at least one)
     # -------------------------------
     x_dims = ["BenefitType", "BenefitSubType"]
@@ -649,7 +673,7 @@ else:
             y_column = "BenefitSubType_Score"
             
             top_subtypes = (
-                df3.groupby(["BenefitType", "BenefitSubType"])[y_column]
+                df_selected.groupby(["BenefitType", "BenefitSubType"])[y_column]
                 .mean()
                 .groupby(level=0, group_keys=False)
                 .nlargest(3)
@@ -663,14 +687,23 @@ else:
             fig = go.Figure()
             
             for subtype in subtypes:
-                subset = top_subtypes[top_subtypes["BenefitSubType"] == subtype]
+                # Align y-values with all benefit types to avoid overlapping bars
+                y_values = [
+                    top_subtypes[
+                        (top_subtypes["BenefitType"] == bt) & (top_subtypes["BenefitSubType"] == subtype)
+                    ][y_column].values[0] if not top_subtypes[
+                        (top_subtypes["BenefitType"] == bt) & (top_subtypes["BenefitSubType"] == subtype)
+                    ].empty else 0
+                    for bt in benefit_types
+                ]
+                
                 fig.add_trace(
                     go.Bar(
-                        x=subset["BenefitType"],
-                        y=subset[y_column],
+                        x=benefit_types,
+                        y=y_values,
                         name=subtype,
-                        width=0.40,  # make bars wider
-                        text=subset[y_column],
+                        width=0.3,
+                        text=y_values,
                         textposition='auto'
                     )
                 )
@@ -680,8 +713,8 @@ else:
                 height=600,
                 xaxis_title="",
                 yaxis_title="",
-                bargap=0,      # gap between groups
-                bargroupgap=1 # gap between bars in a group
+                bargap=0.05,      # gap between groups
+                bargroupgap=0.2   # gap between bars in a group
             )
 
         # -------------------------------
@@ -689,7 +722,7 @@ else:
         # -------------------------------
         elif "BenefitType" in x_selection:
             y_column = "BenefitType_Score"
-            grouped = df3.groupby("BenefitType")[y_column].mean().reset_index()
+            grouped = df_selected.groupby("BenefitType")[y_column].mean().reset_index()
             fig = px.bar(
                 grouped,
                 x="BenefitType",
@@ -705,7 +738,7 @@ else:
         # -------------------------------
         else:
             y_column = "BenefitSubType_Score"
-            grouped = df3.groupby("BenefitSubType")[y_column].mean().reset_index()
+            grouped = df_selected.groupby("BenefitSubType")[y_column].mean().reset_index()
             fig = px.bar(
                 grouped,
                 x="BenefitSubType",
@@ -716,8 +749,10 @@ else:
             )
             fig.update_layout(height=500)
 
+    # Format text and display chart
     fig.update_traces(texttemplate='%{text:.2f}', textposition='outside')
     st.plotly_chart(fig, use_container_width=True, config=plotly_config)
+
 
 # Knowledge Base Section
 if st.session_state.query_history:
