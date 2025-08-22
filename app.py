@@ -658,11 +658,10 @@ else:
             fig = px.bar(
                 top_subtypes,
                 x="BenefitSubType",
-                y="Sentiment Scores",
+                y=y_column,
                 color="BenefitSubType",
                 facet_col="BenefitType",
                 facet_col_wrap=2,
-                text=y_column,
                 title="Top 3 Subtypes per Benefit Type"
             )
             fig.update_layout(
