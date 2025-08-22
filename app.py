@@ -617,7 +617,7 @@ else:
     # -------------------------------
     # Display full table
     # -------------------------------
-    st.markdown("## 📝 All Benefits & Subtypes with Sentiment Scores")
+    st.markdown("## 📝 Sentiment Analysis Scores for Beneits and their Subtypes")
     st.markdown(
         "Explore **Benefit Types** and **Subtypes** along with their sentiment scores. "
         "Use the controls below to customize your view."
@@ -628,65 +628,65 @@ else:
     # -------------------------------
     plotly_config = {"displaylogo": False, "displayModeBar": True}
 
-    # Categorical and numeric options
+    # -------------------------------
+    # X-axis selection (at least one)
+    # -------------------------------
     x_dims = ["BenefitType", "BenefitSubType"]
-    y_metrics = ["BenefitType_Score", "BenefitSubType_Score"]
-
     x_selection = st.multiselect(
-        "Choose up to 2 categorical dimensions (x-axis / grouping):",
+        "Choose at least one categorical dimension (x-axis / grouping):",
         options=x_dims,
         default=["BenefitType"],
-        max_selections=2,
-        key="x_selection_multiselect"
+        key="x_selection_custom"
     )
 
-    y_selection = st.selectbox(
-        "Choose numeric metric (y-axis):",
-        options=y_metrics,
-        index=0,
-        key="y_selection_selectbox"
-    )
-
-    # -------------------------------
-    # Build chart data
-    # -------------------------------
     if len(x_selection) == 0:
-        st.warning("👉 Please select at least one categorical dimension for X-axis.")
+        st.warning("👉 Please select at least one dimension to display the chart.")
     else:
-        # Group by selected dimensions
-        grouped = df3.groupby(x_selection)[y_selection].mean().reset_index()
+        # -------------------------------
+        # Determine which score column to use
+        # -------------------------------
+        if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
+            y_column = "BenefitSubType_Score"
+            group_cols = ["BenefitType", "BenefitSubType"]
+            title = "Benefit Subtype Scores grouped by Benefit Type"
+        elif "BenefitType" in x_selection:
+            y_column = "BenefitType_Score"
+            group_cols = ["BenefitType"]
+            title = "Benefit Type Scores"
+        else:
+            y_column = "BenefitSubType_Score"
+            group_cols = ["BenefitSubType"]
+            title = "Benefit Subtype Scores"
 
-        # Single dimension → simple bar
-        if len(x_selection) == 1:
+        # Group by selected dimensions
+        grouped = df3.groupby(group_cols)[y_column].mean().reset_index()
+
+        # -------------------------------
+        # Build bar chart
+        # -------------------------------
+        if len(group_cols) == 1:
             fig = px.bar(
                 grouped,
-                x=x_selection[0],
-                y=y_selection,
-                color=x_selection[0],
-                text=y_selection,
-                title=f"{y_selection} by {x_selection[0]}"
+                x=group_cols[0],
+                y=y_column,
+                text=y_column,
+                color=group_cols[0],
+                title=title
             )
-        
-        # Two dimensions → grouped bar
         else:
             fig = px.bar(
                 grouped,
-                x=x_selection[0],
-                y=y_selection,
-                color=x_selection[1],
+                x=group_cols[0],
+                y=y_column,
+                color=group_cols[1],
                 barmode="group",
-                text=y_selection,
-                title=f"{y_selection} by {x_selection[0]} and {x_selection[1]}"
+                text=y_column,
+                title=title
             )
 
+        fig.update_traces(texttemplate='%{text:.2f}', textposition='outside')
         fig.update_layout(height=500)
         st.plotly_chart(fig, use_container_width=True, config=plotly_config)
-
-    # -------------------------------
-    # Display grouped table
-    # -------------------------------
-    st.markdown("## 📝 Aggregated Table")
-    st.dataframe(grouped.sort_values(by=y_selection, ascending=False))
 
 # Knowledge Base Section
 if st.session_state.query_history:
