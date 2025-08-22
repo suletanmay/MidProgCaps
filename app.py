@@ -7,6 +7,7 @@ from datetime import datetime
 import time
 import os
 import altair as alt
+import matplotlib.pyplot as plt
 
 
 # Page configuration
@@ -94,9 +95,18 @@ def load_recommendation_data():
     
     return df
 
+def load_sentiment_analysis_data():
+    """Load the cleaned dataset from CSV"""
+    base_dir = os.path.dirname(__file__)
+    file_path = os.path.join(base_dir, "data", "sentiment_analysis_best_benefits.csv")
+    
+    df = pd.read_csv(file_path)
+    return df
+
 # Load data
 df = load_cleaned_data()
 df2 = load_recommendation_data()
+df3 = load_sentiment_analysis_data()
 
 # Header
 st.markdown("""
@@ -601,6 +611,56 @@ else:
             for r in recs:
                 if pd.notna(r) and str(r).strip() != "":   # filters out NaN and empty strings
                     st.write(f"- {r}")
+                    
+    # -------------------------------
+    # Display Data Table
+    # -------------------------------
+    st.markdown("## 📝 Benefits & Subtypes with Sentiment Scores")
+    st.dataframe(df3.sort_values(by='BenefitType_Score', ascending=False))
+
+    # -------------------------------
+    # Visualization: Top Benefit Types
+    # -------------------------------
+    st.markdown("## 📊 Top Benefit Types")
+    top_benefits = df3[['BenefitType', 'BenefitType_Score']].drop_duplicates().sort_values(
+        by='BenefitType_Score', ascending=False
+    ).head(10)
+
+    plt.figure(figsize=(10,6))
+    sns.barplot(
+        x='BenefitType_Score', 
+        y='BenefitType', 
+        data=top_benefits, 
+        palette="viridis"
+    )
+    plt.xlabel("Average Sentiment Score")
+    plt.ylabel("Benefit Type")
+    plt.title("Top 10 Benefit Types by Sentiment")
+    st.pyplot(plt.gcf())
+    plt.clf()
+
+    # -------------------------------
+    # Visualization: Top 3 Subtypes per Benefit Type
+    # -------------------------------
+    st.markdown("## 📊 Top 3 Subtypes for Each Top Benefit Type")
+    for benefit in top_benefits['BenefitType']:
+        st.markdown(f"### {benefit}")
+        subset = df3[df3['BenefitType'] == benefit].sort_values(
+            by='BenefitSubType_Score', ascending=False
+        ).head(3)
+        
+        plt.figure(figsize=(10,4))
+        sns.barplot(
+            x='BenefitSubType_Score', 
+            y='BenefitSubType', 
+            data=subset, 
+            palette="coolwarm"
+        )
+        plt.xlabel("Average Sentiment Score")
+        plt.ylabel("Benefit Subtype")
+        plt.title(f"Top 3 Subtypes for {benefit}")
+        st.pyplot(plt.gcf())
+        plt.clf()
 
 # Knowledge Base Section
 if st.session_state.query_history:
