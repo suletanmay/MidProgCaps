@@ -617,8 +617,8 @@ else:
     st.dataframe(df3.sort_values(by='BenefitType_Score', ascending=False))
 
     st.markdown(
-    "Explore **Benefit Types** and **Subtypes** along with their sentiment scores. "
-    "Use the controls below to customize your view."
+        "Explore **Benefit Types** and **Subtypes** along with their sentiment scores. "
+        "Use the controls below to customize your view."
     )
 
     # -------------------------------
@@ -640,14 +640,14 @@ else:
         options=x_dims,
         default=["BenefitType"],
         max_selections=2,
-        key="x_selection"
+        key="x_selection_multiselect"  # ✅ Unique key
     )
 
     y_selection = st.selectbox(
         "Choose numeric metric (y-axis):",
         options=y_metrics,
         index=0,
-        key="y_selection"
+        key="y_selection_selectbox"  # ✅ Unique key
     )
 
     # -------------------------------
@@ -682,7 +682,7 @@ else:
         st.plotly_chart(fig, use_container_width=True, config=plotly_config)
 
     # -------------------------------
-    # Optional: display grouped table
+    # Display grouped table
     # -------------------------------
     st.markdown("## 📝 Aggregated Table")
     st.dataframe(grouped.sort_values(by=y_selection, ascending=False))
