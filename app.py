@@ -680,8 +680,8 @@ else:
                 height=600,
                 xaxis_title="",
                 yaxis_title="",
-                bargap=1,      # gap between groups
-                bargroupgap=0 # gap between bars in a group
+                bargap=0,      # gap between groups
+                bargroupgap=1 # gap between bars in a group
             )
 
         # -------------------------------
