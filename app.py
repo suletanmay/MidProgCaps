@@ -668,10 +668,13 @@ else:
     else:
         # -------------------------------
         # Both BenefitType & BenefitSubType selected
-        # -------------------------------
+                # -------------------------------
         if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
             y_column = "BenefitSubType_Score"
             
+            # Choose dataframe based on Best/Worst selection
+            df_selected = df3 if score_option == "Best" else df4
+
             top_subtypes = (
                 df_selected.groupby(["BenefitType", "BenefitSubType"])[y_column]
                 .mean()
@@ -702,9 +705,9 @@ else:
                         x=benefit_types,
                         y=y_values,
                         name=subtype,
-                        width=0.3,
+                        width=0.25,           # slightly narrower so bars fit side by side
                         text=y_values,
-                        textposition='auto'
+                        textposition='outside'
                     )
                 )
             
@@ -713,9 +716,15 @@ else:
                 height=600,
                 xaxis_title="",
                 yaxis_title="",
-                bargap=0.05,      # gap between groups
-                bargroupgap=0.2   # gap between bars in a group
+                bargap=0.05,               # small gap between groups
+                bargroupgap=0.25,          # bigger gap between bars in same group
+                legend_title="Benefit Subtype"
             )
+            
+            # Optional: rotate x-ticks for better readability
+            fig.update_xaxes(tickangle=-30)
+            
+            st.plotly_chart(fig, use_container_width=True, config=plotly_config)
 
         # -------------------------------
         # Only BenefitType selected
