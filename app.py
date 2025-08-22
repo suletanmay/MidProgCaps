@@ -94,7 +94,7 @@ def load_recommendation_data():
     return df
 
 def load_sentiment_analysis_data():
-    """Load the cleaned dataset from CSV"""
+    """Load the cleaned dataset from CSV and normalize column names."""
     base_dir = os.path.dirname(__file__)
     file_path = os.path.join(base_dir, "data", "sentiment_analysis_best_benefits.csv")
     
@@ -628,11 +628,6 @@ else:
     # -------------------------------
     plotly_config = {"displaylogo": False, "displayModeBar": True}
 
-    # -------------------------------
-    # Custom Analytics Explorer
-    # -------------------------------
-    st.subheader("🔍 Custom Analytics Explorer")
-
     # Categorical and numeric options
     x_dims = ["BenefitType", "BenefitSubType"]
     y_metrics = ["BenefitType_Score", "BenefitSubType_Score"]
@@ -642,14 +637,14 @@ else:
         options=x_dims,
         default=["BenefitType"],
         max_selections=2,
-        key="x_selection_multiselect"  # ✅ Unique key
+        key="x_selection_multiselect"
     )
 
     y_selection = st.selectbox(
         "Choose numeric metric (y-axis):",
         options=y_metrics,
         index=0,
-        key="y_selection_selectbox"  # ✅ Unique key
+        key="y_selection_selectbox"
     )
 
     # -------------------------------
@@ -658,26 +653,30 @@ else:
     if len(x_selection) == 0:
         st.warning("👉 Please select at least one categorical dimension for X-axis.")
     else:
-        group_cols = x_selection
-        grouped = df.groupby(group_cols)[y_selection].mean().reset_index()
+        # Group by selected dimensions
+        grouped = df3.groupby(x_selection)[y_selection].mean().reset_index()
 
         # Single dimension → simple bar
         if len(x_selection) == 1:
             fig = px.bar(
                 grouped,
-                x=x_selection[0], y=y_selection, color=x_selection[0],
-                title=f"{y_selection} by {x_selection[0]}",
-                text=y_selection
+                x=x_selection[0],
+                y=y_selection,
+                color=x_selection[0],
+                text=y_selection,
+                title=f"{y_selection} by {x_selection[0]}"
             )
         
         # Two dimensions → grouped bar
         else:
             fig = px.bar(
                 grouped,
-                x=x_selection[0], y=y_selection, color=x_selection[1],
+                x=x_selection[0],
+                y=y_selection,
+                color=x_selection[1],
                 barmode="group",
-                title=f"{y_selection} by {x_selection[0]} and {x_selection[1]}",
-                text=y_selection
+                text=y_selection,
+                title=f"{y_selection} by {x_selection[0]} and {x_selection[1]}"
             )
 
         fig.update_layout(height=500)
