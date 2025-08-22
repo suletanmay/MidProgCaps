@@ -101,7 +101,7 @@ def load_sentiment_analysis_data():
     df = pd.read_csv(file_path)
     
     # Normalize column names: strip spaces, replace spaces with underscores
-    df.columns = [col.strip().replace(" ", "_") for col in df3.columns]
+    df.columns = [col.strip().replace(" ", "_") for col in df.columns]
     
     return df
 
