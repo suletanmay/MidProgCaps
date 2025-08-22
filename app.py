@@ -658,7 +658,7 @@ else:
             fig = px.bar(
                 top_subtypes,
                 x="BenefitSubType",
-                y=y_column,
+                y="Sentiment Scores",
                 color="BenefitSubType",
                 facet_col="BenefitType",
                 facet_col_wrap=2,
