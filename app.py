@@ -648,7 +648,6 @@ else:
         if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
             y_column = "BenefitSubType_Score"
             
-            # Select top 3 subtypes per benefit type
             top_subtypes = (
                 df3.groupby(["BenefitType", "BenefitSubType"])[y_column]
                 .mean()
@@ -657,27 +656,33 @@ else:
                 .reset_index()
             )
             
-            # Side-by-side bar chart
-            fig = px.bar(
-                top_subtypes,
-                x="BenefitType",
-                y=y_column,
-                color="BenefitSubType",
-                text=y_column,
-                barmode="group",  # side-by-side bars
-                title="Top 3 Subtypes per Benefit Type"
-            )
+            # Unique types and subtypes
+            benefit_types = top_subtypes["BenefitType"].unique()
+            subtypes = top_subtypes["BenefitSubType"].unique()
+            
+            fig = go.Figure()
+            
+            for subtype in subtypes:
+                subset = top_subtypes[top_subtypes["BenefitSubType"] == subtype]
+                fig.add_trace(
+                    go.Bar(
+                        x=subset["BenefitType"],
+                        y=subset[y_column],
+                        name=subtype,
+                        width=0.25,  # make bars wider
+                        text=subset[y_column],
+                        textposition='auto'
+                    )
+                )
             
             fig.update_layout(
+                barmode='group',
                 height=600,
-                xaxis_title="",  
+                xaxis_title="",
                 yaxis_title="",
-                bargap=0.2,       # smaller gap between bars
-                bargroupgap=0.1   # smaller gap between groups
+                bargap=0.1,      # gap between groups
+                bargroupgap=0.05 # gap between bars in a group
             )
-            
-            # Optional: show all x-ticks clearly
-            fig.update_xaxes(tickangle=-45)
 
         # -------------------------------
         # Only BenefitType selected
