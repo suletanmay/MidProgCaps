@@ -644,10 +644,9 @@ else:
     else:
         # -------------------------------
         # Both BenefitType & BenefitSubType selected
-        # -------------------------------
+                # -------------------------------
         if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
             y_column = "BenefitSubType_Score"
-            # Select top 3 subtypes per benefit type
             top_subtypes = (
                 df3.groupby(["BenefitType", "BenefitSubType"])[y_column]
                 .mean()
@@ -655,6 +654,7 @@ else:
                 .nlargest(3)
                 .reset_index()
             )
+            
             fig = px.bar(
                 top_subtypes,
                 x="BenefitSubType",
@@ -665,14 +665,27 @@ else:
                 text=y_column,
                 title="Top 3 Subtypes per Benefit Type"
             )
-            fig.update_layout(
-                height=600,
-                xaxis_title="",  # remove x-axis title
-                yaxis_title="",  # remove y-axis title
-            )
-            # Hide tick labels only for this case
-            fig.update_xaxes(showticklabels=False)
+            
+            # Hide all repeated axis labels
             fig.update_yaxes(showticklabels=False)
+            fig.update_xaxes(showticklabels=False)
+
+            # Add centered axis labels using annotations
+            fig.add_annotation(
+                x=0.5, y=-0.1, xref='paper', yref='paper',
+                text="Benefit Subtypes",
+                showarrow=False,
+                font=dict(size=14)
+            )
+            fig.add_annotation(
+                x=-0.05, y=0.5, xref='paper', yref='paper',
+                text="Sentiment Score",
+                showarrow=False,
+                textangle=-90,
+                font=dict(size=14)
+            )
+
+            fig.update_layout(height=600, margin=dict(t=50, b=50))
 
         # -------------------------------
         # Only BenefitType selected
