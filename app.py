@@ -746,9 +746,6 @@ else:
                 legend_title="Benefit Subtype"
             )
             fig.update_xaxes(tickangle=-30)
-            st.plotly_chart(fig, use_container_width=True, config=plotly_config)
-
-
             
         # -------------------------------
         # Only BenefitType selected
