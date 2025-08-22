@@ -745,7 +745,10 @@ else:
                 bargroupgap=0.25,
                 legend_title="Benefit Subtype"
             )
-            fig.update_xaxes(tickangle=-30)
+
+            # Remove numerical labels on x-axis
+            fig.update_xaxes(tickvals=list(range(len(benefit_types))), ticktext=benefit_types, tickangle=-30)
+
             
         # -------------------------------
         # Only BenefitType selected
