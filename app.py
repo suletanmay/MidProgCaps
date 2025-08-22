@@ -648,7 +648,6 @@ else:
         if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
             y_column = "BenefitSubType_Score"
             
-            # Select top 3 subtypes per benefit type
             top_subtypes = (
                 df3.groupby(["BenefitType", "BenefitSubType"])[y_column]
                 .mean()
@@ -657,37 +656,32 @@ else:
                 .reset_index()
             )
             
-            # Get unique benefit types and subtypes
+            # Unique types and subtypes
             benefit_types = top_subtypes["BenefitType"].unique()
             subtypes = top_subtypes["BenefitSubType"].unique()
             
             fig = go.Figure()
             
             for subtype in subtypes:
-                # Only keep the rows for this subtype
                 subset = top_subtypes[top_subtypes["BenefitSubType"] == subtype]
-                # Ensure the x-values are aligned with all benefit types
-                y_values = [subset[y_column][subset["BenefitType"] == bt].values[0] 
-                            if bt in subset["BenefitType"].values else 0
-                            for bt in benefit_types]
                 fig.add_trace(
                     go.Bar(
-                        x=benefit_types,
-                        y=y_values,
+                        x=subset["BenefitType"],
+                        y=subset[y_column],
                         name=subtype,
-                        text=y_values,
-                        textposition='auto',
-                        width=0.25  # wider bars
+                        width=0.25,  # make bars wider
+                        text=subset[y_column],
+                        textposition='auto'
                     )
                 )
             
             fig.update_layout(
-                barmode='group',    # side-by-side bars
+                barmode='group',
                 height=600,
                 xaxis_title="",
                 yaxis_title="",
-                bargap=0.15,        # space between groups
-                bargroupgap=0.05    # space between bars in a group
+                bargap=0.1,      # gap between groups
+                bargroupgap=0.05 # gap between bars in a group
             )
 
         # -------------------------------
