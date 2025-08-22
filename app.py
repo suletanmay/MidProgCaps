@@ -613,11 +613,11 @@ else:
             for r in recs:
                 if pd.notna(r) and str(r).strip() != "":   # filters out NaN and empty strings
                     st.write(f"- {r}")
-                    
+                        
     # -------------------------------
     # Display full table
     # -------------------------------
-    st.markdown("## 📝 Sentiment Analysis Scores for Beneits and their Subtypes")
+    st.markdown("## 📝 Sentiment Analysis Scores for Benefits and their Subtypes")
     st.markdown(
         "Explore **Benefit Types** and **Subtypes** along with their sentiment scores. "
         "Use the controls below to customize your view."
@@ -643,50 +643,65 @@ else:
         st.warning("👉 Please select at least one dimension to display the chart.")
     else:
         # -------------------------------
-        # Determine which score column to use
+        # Both BenefitType & BenefitSubType selected
         # -------------------------------
         if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
             y_column = "BenefitSubType_Score"
-            group_cols = ["BenefitType", "BenefitSubType"]
-            title = "Benefit Subtype Scores grouped by Benefit Type"
+            # Select top 3 subtypes per benefit type
+            top_subtypes = (
+                df3.groupby(["BenefitType", "BenefitSubType"])[y_column]
+                .mean()
+                .groupby(level=0, group_keys=False)
+                .nlargest(3)
+                .reset_index()
+            )
+            fig = px.bar(
+                top_subtypes,
+                x="BenefitSubType",
+                y=y_column,
+                color="BenefitSubType",
+                facet_col="BenefitType",
+                facet_col_wrap=2,
+                text=y_column,
+                title="Top 3 Subtypes per Benefit Type"
+            )
+            fig.update_layout(height=600)
+
+        # -------------------------------
+        # Only BenefitType selected
+        # -------------------------------
         elif "BenefitType" in x_selection:
             y_column = "BenefitType_Score"
-            group_cols = ["BenefitType"]
-            title = "Benefit Type Scores"
+            grouped = df3.groupby("BenefitType")[y_column].mean().reset_index()
+            fig = px.bar(
+                grouped,
+                x="BenefitType",
+                y=y_column,
+                text=y_column,
+                color="BenefitType",
+                title="Benefit Type Scores"
+            )
+            fig.update_layout(height=500)
+
+        # -------------------------------
+        # Only BenefitSubType selected
+        # -------------------------------
         else:
             y_column = "BenefitSubType_Score"
-            group_cols = ["BenefitSubType"]
-            title = "Benefit Subtype Scores"
-
-        # Group by selected dimensions
-        grouped = df3.groupby(group_cols)[y_column].mean().reset_index()
-
-        # -------------------------------
-        # Build bar chart
-        # -------------------------------
-        if len(group_cols) == 1:
+            grouped = df3.groupby("BenefitSubType")[y_column].mean().reset_index()
             fig = px.bar(
                 grouped,
-                x=group_cols[0],
+                x="BenefitSubType",
                 y=y_column,
                 text=y_column,
-                color=group_cols[0],
-                title=title
+                color="BenefitSubType",
+                title="Benefit Subtype Scores"
             )
-        else:
-            fig = px.bar(
-                grouped,
-                x=group_cols[0],
-                y=y_column,
-                color=group_cols[1],
-                barmode="group",
-                text=y_column,
-                title=title
-            )
+            fig.update_layout(height=500)
 
         fig.update_traces(texttemplate='%{text:.2f}', textposition='outside')
-        fig.update_layout(height=500)
         st.plotly_chart(fig, use_container_width=True, config=plotly_config)
+
 
 # Knowledge Base Section
 if st.session_state.query_history:
