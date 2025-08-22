@@ -663,25 +663,32 @@ else:
             fig = go.Figure()
             
             for subtype in subtypes:
-                subset = top_subtypes[top_subtypes["BenefitSubType"] == subtype]
+                # Align y-values with all benefit types
+                y_values = []
+                for bt in benefit_types:
+                    match = top_subtypes[
+                        (top_subtypes["BenefitType"] == bt) & (top_subtypes["BenefitSubType"] == subtype)
+                    ]
+                    y_values.append(match[y_column].values[0] if not match.empty else 0)
+                
                 fig.add_trace(
                     go.Bar(
-                        x=subset["BenefitType"],
-                        y=subset[y_column],
+                        x=benefit_types,
+                        y=y_values,
                         name=subtype,
-                        width=0.40,  # make bars wider
-                        text=subset[y_column],
+                        width=0.3,  # width of each bar
+                        text=y_values,
                         textposition='auto'
                     )
                 )
-            
+
             fig.update_layout(
-                barmode='group',
+                barmode='group',     # side-by-side bars
                 height=600,
                 xaxis_title="",
                 yaxis_title="",
-                bargap=0,      # gap between groups
-                bargroupgap=1 # gap between bars in a group
+                bargap=0.05,         # gap between groups
+                bargroupgap=0.2      # gap between bars in same group
             )
 
         # -------------------------------
