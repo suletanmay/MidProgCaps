@@ -475,6 +475,23 @@ if st.session_state.current_view == 'chat':
                     if fig:
                         st.plotly_chart(fig, use_container_width=True)
                         
+    # Knowledge Base Section
+    if st.session_state.query_history:
+        st.markdown("---")
+        st.markdown("## 📚 Query Knowledge Base")
+        
+        query_df = pd.DataFrame(st.session_state.query_history)
+        st.dataframe(query_df, use_container_width=True)
+        
+        # Download knowledge base
+        csv = query_df.to_csv(index=False)
+        st.download_button(
+            label="📥 Download Query History",
+            data=csv,
+            file_name=f"hr_chatbot_queries_{datetime.now().strftime('%Y%m%d')}.csv",
+            mime="text/csv"
+        )
+                        
     # Footer
     st.markdown("---")
     st.markdown("""
@@ -668,7 +685,7 @@ else:
     else:
         # -------------------------------
         # Both BenefitType & BenefitSubType selected
-                # -------------------------------
+        # -------------------------------
         if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
             y_column = "BenefitSubType_Score"
             
@@ -690,13 +707,13 @@ else:
             fig = go.Figure()
             
             for subtype in subtypes:
-                # Align y-values with all benefit types to avoid overlapping bars
+                # Align y-values with all benefit types, use None for missing subtypes
                 y_values = [
                     top_subtypes[
                         (top_subtypes["BenefitType"] == bt) & (top_subtypes["BenefitSubType"] == subtype)
                     ][y_column].values[0] if not top_subtypes[
                         (top_subtypes["BenefitType"] == bt) & (top_subtypes["BenefitSubType"] == subtype)
-                    ].empty else 0
+                    ].empty else None
                     for bt in benefit_types
                 ]
                 
@@ -721,10 +738,10 @@ else:
                 legend_title="Benefit Subtype"
             )
             
-            # Optional: rotate x-ticks for better readability
             fig.update_xaxes(tickangle=-30)
             
             st.plotly_chart(fig, use_container_width=True, config=plotly_config)
+
 
         # -------------------------------
         # Only BenefitType selected
@@ -763,19 +780,4 @@ else:
     st.plotly_chart(fig, use_container_width=True, config=plotly_config)
 
 
-# Knowledge Base Section
-if st.session_state.query_history:
-    st.markdown("---")
-    st.markdown("## 📚 Query Knowledge Base")
-    
-    query_df = pd.DataFrame(st.session_state.query_history)
-    st.dataframe(query_df, use_container_width=True)
-    
-    # Download knowledge base
-    csv = query_df.to_csv(index=False)
-    st.download_button(
-        label="📥 Download Query History",
-        data=csv,
-        file_name=f"hr_chatbot_queries_{datetime.now().strftime('%Y%m%d')}.csv",
-        mime="text/csv"
-    )
+
