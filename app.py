@@ -647,6 +647,7 @@ else:
         # -------------------------------
         if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
             y_column = "BenefitSubType_Score"
+            
             # Select top 3 subtypes per benefit type
             top_subtypes = (
                 df3.groupby(["BenefitType", "BenefitSubType"])[y_column]
@@ -655,23 +656,26 @@ else:
                 .nlargest(3)
                 .reset_index()
             )
+            
+            # Side-by-side bar chart
             fig = px.bar(
                 top_subtypes,
-                x="BenefitSubType",
+                x="BenefitType",
                 y=y_column,
                 color="BenefitSubType",
-                facet_col="BenefitType",
-                facet_col_wrap=2,
+                text=y_column,
+                barmode="group",  # side-by-side bars
                 title="Top 3 Subtypes per Benefit Type"
             )
+            
             fig.update_layout(
                 height=600,
                 xaxis_title="",  # remove x-axis title
                 yaxis_title="",  # remove y-axis title
             )
-            # Hide tick labels only for this case
-            fig.update_xaxes(showticklabels=False)
-            fig.update_yaxes(showticklabels=False)
+            
+            # Optional: show all x-ticks clearly
+            fig.update_xaxes(tickangle=-45)
 
         # -------------------------------
         # Only BenefitType selected
