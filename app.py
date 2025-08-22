@@ -705,25 +705,29 @@ else:
             fig = go.Figure()
             
             for subtype in subtypes:
-                y_values = [
-                    top_subtypes[
+                y_values = []
+                text_values = []
+                for bt in benefit_types:
+                    match = top_subtypes[
                         (top_subtypes["BenefitType"] == bt) & (top_subtypes["BenefitSubType"] == subtype)
-                    ][y_column].values[0] if not top_subtypes[
-                        (top_subtypes["BenefitType"] == bt) & (top_subtypes["BenefitSubType"] == subtype)
-                    ].empty else None
-                    for bt in benefit_types
-                ]
+                    ]
+                    if not match.empty:
+                        y_values.append(match[y_column].values[0])
+                        text_values.append(match[y_column].values[0])
+                    else:
+                        y_values.append(None)      # no bar
+                        text_values.append(None)   # no label
                 
                 fig.add_trace(
                     go.Bar(
                         x=benefit_types,
                         y=y_values,
                         name=subtype,
-                        width=0.3,                 # slightly wider bars
-                        text=y_values,
+                        width=0.3,
+                        text=text_values,
                         textposition='outside',
                         textfont=dict(size=16),
-                        texttemplate='%{text:.2f}'  # format to 2 decimals
+                        texttemplate='%{text:.2f}'  # 2 decimals
                     )
                 )
             
@@ -732,8 +736,8 @@ else:
                 height=700,
                 xaxis_title="",
                 yaxis_title="",
-                bargap=0.05,                     # gap between groups
-                bargroupgap=0.25,                # gap between bars in same group
+                bargap=0.05,
+                bargroupgap=0.25,
                 legend_title="Benefit Subtype"
             )
             
@@ -741,6 +745,7 @@ else:
             
             st.plotly_chart(fig, use_container_width=True, config=plotly_config)
 
+            
         # -------------------------------
         # Only BenefitType selected
         # -------------------------------
