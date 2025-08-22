@@ -1,0 +1,18 @@
+BenefitType,BenefitType_Score,BenefitSubType,BenefitSubType_Score
+Flexible Spending Account,0.35725190839694654,Healthcare FSA,0.35725190839694654
+Wellness Programs,0.33695652173913043,Premium Discount Tier 1,0.33695652173913043
+Commuter Benefits,0.2641843971631206,Transit Subsidy,0.2641843971631206
+Childcare,0.22217068645640076,After-School Care,0.3059322033898305
+Childcare,0.22217068645640076,On-Site Infant Care,0.13470290771175727
+Retirement Plan,0.2165374677002584,401k Investment Fees,0.266120218579235
+Retirement Plan,0.2165374677002584,401k Maximum Matching,0.22436974789915967
+Retirement Plan,0.2165374677002584,401k Catch-Up Contributions,0.21308641975308643
+Gym Membership,0.20422733516483518,Family Membership,0.20649432534678439
+Gym Membership,0.20422733516483518,Tier 1 Partners,0.21941733639494834
+Gym Membership,0.20422733516483518,Tier 2 Partners,0.21860819037078033
+Professional Development,0.16887417218543047,Conference Attendance,0.16887417218543047
+Cell Phone Allowance,0.11696428571428572,Monthly Communications,0.11696428571428572
+Tuition Reimbursement,0.10698785843451306,Graduate Degree,0.1848938223938224
+Tuition Reimbursement,0.10698785843451306,Professional Certification,0.15
+Tuition Reimbursement,0.10698785843451306,Individual Courses,0.06881134133042531
+Technology Stipend,0.06971830985915493,Monthly Internet Allowance,0.06971830985915493
