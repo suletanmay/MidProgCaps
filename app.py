@@ -670,8 +670,10 @@ else:
             
             fig.update_layout(
                 height=600,
-                xaxis_title="",  # remove x-axis title
-                yaxis_title="",  # remove y-axis title
+                xaxis_title="",  
+                yaxis_title="",
+                bargap=0.2,       # smaller gap between bars
+                bargroupgap=0.1   # smaller gap between groups
             )
             
             # Optional: show all x-ticks clearly
