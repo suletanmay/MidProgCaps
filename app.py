@@ -614,54 +614,51 @@ else:
                     st.write(f"- {r}")
                     
     # -------------------------------
-    # Display Data Table
+    # Display full table
     # -------------------------------
-    st.markdown("## 📝 Benefits & Subtypes with Sentiment Scores")
+    st.markdown("## 📝 All Benefits & Subtypes with Sentiment Scores")
     st.dataframe(df3.sort_values(by='BenefitType_Score', ascending=False))
 
     # -------------------------------
-    # Visualization: Top Benefit Types
+    # Select Benefit Type(s) for visualization
     # -------------------------------
-    st.markdown("## 📊 Top Benefit Types")
-    top_benefits = df3[['BenefitType', 'BenefitType_Score']].drop_duplicates().sort_values(
-        by='BenefitType_Score', ascending=False
-    ).head(10)
-
-    plt.figure(figsize=(10,6))
-    sns.barplot(
-        x='BenefitType_Score', 
-        y='BenefitType', 
-        data=top_benefits, 
-        palette="viridis"
+    st.markdown("## 📊 Visualize Subtypes for Selected Benefit Type(s)")
+    benefit_options = df3['BenefitType'].unique().tolist()
+    selected_benefits = st.multiselect(
+        "Select Benefit Type(s) to view their top subtypes:",
+        options=benefit_options,
+        default=benefit_options[:3]  # default to top 3 benefits
     )
-    plt.xlabel("Average Sentiment Score")
-    plt.ylabel("Benefit Type")
-    plt.title("Top 10 Benefit Types by Sentiment")
-    st.pyplot(plt.gcf())
-    plt.clf()
 
     # -------------------------------
-    # Visualization: Top 3 Subtypes per Benefit Type
+    # Plot subtypes for selected benefits
     # -------------------------------
-    st.markdown("## 📊 Top 3 Subtypes for Each Top Benefit Type")
-    for benefit in top_benefits['BenefitType']:
+    for benefit in selected_benefits:
         st.markdown(f"### {benefit}")
         subset = df3[df3['BenefitType'] == benefit].sort_values(
             by='BenefitSubType_Score', ascending=False
-        ).head(3)
-        
-        plt.figure(figsize=(10,4))
-        sns.barplot(
-            x='BenefitSubType_Score', 
-            y='BenefitSubType', 
-            data=subset, 
-            palette="coolwarm"
-        )
-        plt.xlabel("Average Sentiment Score")
-        plt.ylabel("Benefit Subtype")
-        plt.title(f"Top 3 Subtypes for {benefit}")
-        st.pyplot(plt.gcf())
-        plt.clf()
+        ).head(3)  # top 3 subtypes
+
+        if not subset.empty:
+            fig = px.bar(
+                subset,
+                x='BenefitSubType_Score',
+                y='BenefitSubType',
+                orientation='h',
+                color='BenefitSubType_Score',
+                color_continuous_scale='RdYlGn',
+                text='BenefitSubType_Score',
+                labels={'BenefitSubType_Score':'Sentiment Score', 'BenefitSubType':'Subtype'}
+            )
+            fig.update_layout(
+                xaxis_title="Average Sentiment Score",
+                yaxis_title="Benefit Subtype",
+                yaxis={'categoryorder':'total ascending'},
+                coloraxis_showscale=False
+            )
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.write("No data for this benefit type.")
 
 # Knowledge Base Section
 if st.session_state.query_history:
