@@ -681,7 +681,7 @@ else:
                 xaxis_title="",
                 yaxis_title="",
                 bargap=1,      # gap between groups
-                bargroupgap=1 # gap between bars in a group
+                bargroupgap=0 # gap between bars in a group
             )
 
         # -------------------------------
