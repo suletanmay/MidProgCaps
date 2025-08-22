@@ -689,7 +689,6 @@ else:
         if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
             y_column = "BenefitSubType_Score"
             
-            # Choose dataframe based on Best/Worst selection
             df_selected = df3 if score_option == "Best" else df4
 
             top_subtypes = (
@@ -700,14 +699,12 @@ else:
                 .reset_index()
             )
             
-            # Unique types and subtypes
             benefit_types = top_subtypes["BenefitType"].unique()
             subtypes = top_subtypes["BenefitSubType"].unique()
             
             fig = go.Figure()
             
             for subtype in subtypes:
-                # Align y-values with all benefit types, use None for missing subtypes
                 y_values = [
                     top_subtypes[
                         (top_subtypes["BenefitType"] == bt) & (top_subtypes["BenefitSubType"] == subtype)
@@ -722,26 +719,27 @@ else:
                         x=benefit_types,
                         y=y_values,
                         name=subtype,
-                        width=0.25,           # slightly narrower so bars fit side by side
+                        width=0.3,                 # slightly wider bars
                         text=y_values,
-                        textposition='outside'
+                        textposition='outside',
+                        textfont=dict(size=16),
+                        texttemplate='%{text:.2f}'  # format to 2 decimals
                     )
                 )
             
             fig.update_layout(
                 barmode='group',
-                height=600,
+                height=700,
                 xaxis_title="",
                 yaxis_title="",
-                bargap=0.05,               # small gap between groups
-                bargroupgap=0.25,          # bigger gap between bars in same group
+                bargap=0.05,                     # gap between groups
+                bargroupgap=0.25,                # gap between bars in same group
                 legend_title="Benefit Subtype"
             )
             
             fig.update_xaxes(tickangle=-30)
             
-            st.plotly_chart(fig, use_container_width=True, config=plotly_config)
-
+            # st.plotly_chart(fig, use_container_width=True, config=plotly_config)
 
         # -------------------------------
         # Only BenefitType selected
