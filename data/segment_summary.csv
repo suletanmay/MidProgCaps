@@ -1,0 +1,7 @@
+employee_segment,age_group,Department,Gender,UsageFrequency,SatisfactionScore,EmployeeID
+0,Millennials,Finance,Female,3.43,2.97,537
+1,Millennials,Sales,Male,3.16,2.99,523
+2,Gen X,Finance,Female,3.41,3.1,796
+3,Millennials,IT,Male,3.33,2.97,564
+4,Gen X,IT,Female,3.75,3.03,293
+5,Gen X,Marketing,Male,3.4,3.03,1238
