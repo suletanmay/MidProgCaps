@@ -665,7 +665,14 @@ else:
                 text=y_column,
                 title="Top 3 Subtypes per Benefit Type"
             )
-            fig.update_layout(height=600)
+            fig.update_layout(
+                height=600,
+                xaxis_title="",  # remove x-axis title
+                yaxis_title="",  # remove y-axis title
+            )
+            # Hide tick labels only for this case
+            fig.update_xaxes(showticklabels=False)
+            fig.update_yaxes(showticklabels=False)
 
         # -------------------------------
         # Only BenefitType selected
@@ -699,9 +706,8 @@ else:
             )
             fig.update_layout(height=500)
 
-        fig.update_traces(texttemplate='%{text:.2f}', textposition='outside')
-        st.plotly_chart(fig, use_container_width=True, config=plotly_config)
-
+    fig.update_traces(texttemplate='%{text:.2f}', textposition='outside')
+    st.plotly_chart(fig, use_container_width=True, config=plotly_config)
 
 # Knowledge Base Section
 if st.session_state.query_history:
