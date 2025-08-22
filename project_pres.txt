@@ -23,7 +23,58 @@ Slide 11: Key Findings
 Slide 12: Cost vs Usage
 
 
+Slide 17 – Portfolio Rebalancing (High Priority) (≈1.5 min)
 
+*"Let’s start with our first high-priority recommendation: portfolio rebalancing.
+
+Right now, nearly 40% of TechLance’s benefits budget is tied to programs that don’t deliver much return. Things like certain gym partnerships and advanced degree programs sound attractive, but they’re not being used in ways that justify their cost.
+
+Meanwhile, benefits like monthly communications and individual healthcare plans — which employees clearly value — are underfunded. By shifting resources toward these higher-performing programs, we could unlock more than half a million dollars in value.
+
+The key point here is: we don’t need to spend more money. We just need to spend smarter. By trimming low-impact offerings and amplifying the ones employees actually use, we maximize ROI and employee satisfaction simultaneously."*
+
+Transition:
+"Now, reallocating resources is powerful — but we can go a step further. Instead of just funding the best programs overall, we can match the right benefits to the right people."
+
+Slide 18 – Personalization (High Priority) (≈1.5 min)
+
+*"That brings us to our second high-priority recommendation: personalization.
+
+Our segmentation analysis revealed six distinct employee groups, each with very different priorities. For example, tech-savvy millennials in finance care about career growth and flexibility, while established boomers in HR prioritize stability and healthcare. Senior leadership has its own set of needs entirely.
+
+Right now, TechLance takes more of a ‘one-size-fits-all’ approach, which risks disengagement. By tailoring benefits to these segments — such as offering tuition reimbursement to early-career employees, or expanded retirement matching to later-career staff — we send a clear signal: the company understands and supports its people.
+
+This doesn’t just increase usage, it builds loyalty. Employees feel valued when benefits reflect their actual lives. And that translates into higher engagement, stronger satisfaction, and reduced turnover."*
+
+Transition:
+"So, personalization makes benefits more relevant. But while we improve alignment, we also have an opportunity to make the overall program more cost-efficient."
+
+Slide 19 – Cost Efficiency (Medium Priority) (≈1.5 min)
+
+*"Our third recommendation is focused on cost efficiency.
+
+Because TechLance has a workforce of 5,000, we have real bargaining power with vendors. High-usage benefits like healthcare plans and communications platforms give us leverage to renegotiate contracts.
+
+A 5 to 10 percent cost reduction is realistic here. On a $12 million annual budget, that equates to $600,000 to $1.2 million in potential savings — without cutting programs that employees value.
+
+This is why we classify it as medium priority: negotiations take time. But the payoff is significant — cost savings that can be reinvested in high-impact programs, or simply kept as company savings, all while preserving employee satisfaction."*
+
+Transition:
+"So far, we’ve looked at reallocating funds, personalizing benefits, and reducing costs. But there’s one more lever that doesn’t require budget changes at all — and that’s increasing awareness of the benefits employees already have."
+
+Slide 20 – Usage Enhancement (Medium Priority) (≈1.5 min)
+
+*"Our final recommendation is usage enhancement.
+
+Some of the most valuable programs are underutilized simply because employees don’t know enough about them. Take the premium health discount, for example. It delivers 89% satisfaction, but fewer than half of employees are even aware it exists. Or the 401k maximum matching program — it offers employees nearly $1,000 annually, but participation lags far behind its potential.
+
+This is not a funding issue — it’s a communication issue. With targeted campaigns, educational sessions, and timely reminders, we can significantly increase participation. The result? Higher ROI, because fixed-cost benefits generate more value as usage rises. And importantly, employees feel more supported, knowing the company has made valuable resources clear and accessible to them.
+
+In short, this is about shining a light on hidden gems already in the portfolio and ensuring employees can actually take advantage of them."*
+
+✅ This pacing, with transitions and natural pauses, will fill your 6 minutes smoothly and keep the audience engaged.
+
+Do you also want me to prepare a closing bridge line from Slide 20 into the “Expected Impact & Roadmap” section (Slide 21), so you can pivot smoothly into the next part?
 
 
 Slide 13: Recommendations
