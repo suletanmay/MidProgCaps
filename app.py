@@ -669,7 +669,7 @@ else:
                         x=subset["BenefitType"],
                         y=subset[y_column],
                         name=subtype,
-                        width=0.25,  # make bars wider
+                        width=0.40,  # make bars wider
                         text=subset[y_column],
                         textposition='auto'
                     )
