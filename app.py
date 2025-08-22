@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 from datetime import datetime
 import time
 import os
+import altair as alt
 
 # Page configuration
 st.set_page_config(
@@ -60,7 +61,7 @@ if 'query_history' not in st.session_state:
 
 # Mock dataset based on your structure
 @st.cache_data
-def load_data():
+def load_cleaned_data():
     """Load the cleaned dataset from CSV"""
     base_dir = os.path.dirname(__file__)
     file_path = os.path.join(base_dir, "data", "cleaned_data.csv")
@@ -83,8 +84,43 @@ def load_data():
     
     return df
 
+def load_recommendation_data():
+    """Load the cleaned dataset from CSV"""
+    base_dir = os.path.dirname(__file__)
+    file_path = os.path.join(base_dir, "data", "cluster_recommendation.csv")
+    
+    df = pd.read_csv(file_path)
+    
+    return df
+
+def load_best_sentiment_analysis_data():
+    """Load the cleaned dataset from CSV and normalize column names."""
+    base_dir = os.path.dirname(__file__)
+    file_path = os.path.join(base_dir, "data", "sentiment_analysis_best_benefits.csv")
+    
+    df = pd.read_csv(file_path)
+    
+    # Normalize column names: strip spaces, replace spaces with underscores
+    df.columns = [col.strip().replace(" ", "_") for col in df.columns]
+    
+    return df
+def load_worst_sentiment_analysis_data():
+    """Load the cleaned dataset from CSV and normalize column names."""
+    base_dir = os.path.dirname(__file__)
+    file_path = os.path.join(base_dir, "data", "sentiment_analysis_worst_benefits.csv")
+    
+    df = pd.read_csv(file_path)
+    
+    # Normalize column names: strip spaces, replace spaces with underscores
+    df.columns = [col.strip().replace(" ", "_") for col in df.columns]
+    
+    return df
+
 # Load data
-df = load_data()
+df = load_cleaned_data()
+df2 = load_recommendation_data()
+df3 = load_best_sentiment_analysis_data()
+df4 = load_worst_sentiment_analysis_data()
 
 # Header
 st.markdown("""
@@ -438,6 +474,32 @@ if st.session_state.current_view == 'chat':
                     fig = create_visualization(message['visualization'])
                     if fig:
                         st.plotly_chart(fig, use_container_width=True)
+                        
+    # Knowledge Base Section
+    if st.session_state.query_history:
+        st.markdown("---")
+        st.markdown("## 📚 Query Knowledge Base")
+        
+        query_df = pd.DataFrame(st.session_state.query_history)
+        st.dataframe(query_df, use_container_width=True)
+        
+        # Download knowledge base
+        csv = query_df.to_csv(index=False)
+        st.download_button(
+            label="📥 Download Query History",
+            data=csv,
+            file_name=f"hr_chatbot_queries_{datetime.now().strftime('%Y%m%d')}.csv",
+            mime="text/csv"
+        )
+                        
+    # Footer
+    st.markdown("---")
+    st.markdown("""
+    <div style="text-align: center; color: #666;">
+        <p>💡 This chatbot uses RAG (Retrieval-Augmented Generation) to provide data-driven insights from your benefits dataset</p>
+        <p>All queries and analytics are stored for knowledge base creation and continuous improvement</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 else:
     
@@ -536,28 +598,193 @@ else:
             delta="0.2x improvement"
         )
 
-# Knowledge Base Section
-if st.session_state.query_history:
-    st.markdown("---")
-    st.markdown("## 📚 Query Knowledge Base")
-    
-    query_df = pd.DataFrame(st.session_state.query_history)
-    st.dataframe(query_df, use_container_width=True)
-    
-    # Download knowledge base
-    csv = query_df.to_csv(index=False)
-    st.download_button(
-        label="📥 Download Query History",
-        data=csv,
-        file_name=f"hr_chatbot_queries_{datetime.now().strftime('%Y%m%d')}.csv",
-        mime="text/csv"
+    st.markdown("## 🎯 Custom Employee Persona & Recommendations")
+
+    # Dropdowns for persona creation
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        dept = st.selectbox("Select Department", sorted(df2["Department"].unique()))
+    with col2:
+        age = st.selectbox("Select Age Group", sorted(df2["age_group"].unique()))
+    with col3:
+        tenure = st.selectbox("Select Tenure Group", sorted(df2["tenure_group"].unique()))
+
+    # Filter dataframe
+    persona = df2[
+        (df2["Department"] == dept) &
+        (df2["age_group"] == age) &
+        (df2["tenure_group"] == tenure)
+    ]
+
+    if persona.empty:
+        st.warning("⚠️ No data found for this combination.")
+    else:
+        row = persona.iloc[0]
+
+        st.subheader(f"📌 Employee Segment: {row['employee_segment']}")
+
+        # Top and Bottom Benefits
+        top_benefits = [row["top1"], row["top2"], row["top3"]]
+        bot_benefits = [row["bot1"], row["bot2"], row["bot3"]]
+        recs = [row["seg_rec1"], row["seg_rec2"], row["seg_rec3"]]
+
+        colA, colB, colC = st.columns(3)
+        with colA:
+            st.markdown("✅ **Top 3 Used Benefits**")
+            for t in top_benefits:
+                st.write(f"- {t}")
+        with colB:
+            st.markdown("⚠️ **Bottom 3 Used Benefits**")
+            for b in bot_benefits:
+                st.write(f"- {b}")
+        with colC:
+            st.markdown("💡 **Top 3 Recommendations**")
+            for r in recs:
+                if pd.notna(r) and str(r).strip() != "":   # filters out NaN and empty strings
+                    st.write(f"- {r}")
+                        
+    # -------------------------------
+    # Display full table
+    # -------------------------------
+    st.markdown("## 📝 Sentiment Analysis Scores for Benefits and their Subtypes")
+    st.markdown(
+        "Explore **Benefit Types** and **Subtypes** along with their sentiment scores. "
+        "Use the controls below to customize your view."
     )
 
-# Footer
-st.markdown("---")
-st.markdown("""
-<div style="text-align: center; color: #666;">
-    <p>💡 This chatbot uses RAG (Retrieval-Augmented Generation) to provide data-driven insights from your benefits dataset</p>
-    <p>All queries and analytics are stored for knowledge base creation and continuous improvement</p>
-</div>
-""", unsafe_allow_html=True)
+    # -------------------------------
+    # Chart toolbar config
+    # -------------------------------
+    plotly_config = {"displaylogo": False, "displayModeBar": True}
+
+    # -------------------------------
+    # Best / Worst selection
+    # -------------------------------
+    score_option = st.selectbox(
+        "Select which scores to display:",
+        options=["Best", "Worst"],
+        index=0
+    )
+
+    # Choose the dataframe based on selection
+    df_selected = df3 if score_option == "Best" else df4
+
+    # -------------------------------
+    # X-axis selection (at least one)
+    # -------------------------------
+    x_dims = ["BenefitType", "BenefitSubType"]
+    x_selection = st.multiselect(
+        "Choose at least one categorical dimension (x-axis / grouping):",
+        options=x_dims,
+        default=["BenefitType"],
+        key="x_selection_custom"
+    )
+
+    if len(x_selection) == 0:
+        st.warning("👉 Please select at least one dimension to display the chart.")
+    else:
+        # -------------------------------
+        # Both BenefitType & BenefitSubType selected
+        # -------------------------------
+        if "BenefitType" in x_selection and "BenefitSubType" in x_selection:
+            y_column = "BenefitSubType_Score"
+            df_selected = df3 if score_option == "Best" else df4
+
+            top_subtypes = (
+                df_selected.groupby(["BenefitType", "BenefitSubType"])[y_column]
+                .mean()
+                .groupby(level=0, group_keys=False)
+                .nlargest(3)
+                .reset_index()
+            )
+
+            # Remove any rows with 0 or NaN scores to avoid plotting them
+            top_subtypes = top_subtypes[top_subtypes[y_column] != 0]
+            top_subtypes = top_subtypes.dropna(subset=[y_column])
+
+            benefit_types = top_subtypes["BenefitType"].unique()
+            subtypes = top_subtypes["BenefitSubType"].unique()
+
+            fig = go.Figure()
+
+            for subtype in subtypes:
+                y_values = []
+                text_values = []
+                for bt in benefit_types:
+                    match = top_subtypes[
+                        (top_subtypes["BenefitType"] == bt) &
+                        (top_subtypes["BenefitSubType"] == subtype)
+                    ]
+                    if not match.empty:
+                        y_val = match[y_column].values[0]
+                        y_values.append(y_val)
+                        text_values.append(y_val)
+                    else:
+                        y_values.append(None)       # no bar
+                        text_values.append(None)    # no label
+
+                fig.add_trace(
+                    go.Bar(
+                        x=benefit_types,
+                        y=y_values,
+                        name=subtype,
+                        width=0.3,
+                        text=[f"{v:.2f}" if v is not None else "" for v in text_values],
+                        textposition='outside',
+                        textfont=dict(size=16)
+                    )
+                )
+
+
+            fig.update_layout(
+                barmode='group',
+                height=700,
+                xaxis_title="",
+                yaxis_title="",
+                bargap=0.05,
+                bargroupgap=0.25,
+                legend_title="Benefit Subtype"
+            )
+
+            # Remove numerical labels on x-axis
+            fig.update_xaxes(tickvals=list(range(len(benefit_types))), ticktext=benefit_types, tickangle=-30)
+
+            
+        # -------------------------------
+        # Only BenefitType selected
+        # -------------------------------
+        elif "BenefitType" in x_selection:
+            y_column = "BenefitType_Score"
+            grouped = df_selected.groupby("BenefitType")[y_column].mean().reset_index()
+            fig = px.bar(
+                grouped,
+                x="BenefitType",
+                y=y_column,
+                text=y_column,
+                color="BenefitType",
+                title="Benefit Type Scores"
+            )
+            fig.update_layout(height=500)
+
+        # -------------------------------
+        # Only BenefitSubType selected
+        # -------------------------------
+        else:
+            y_column = "BenefitSubType_Score"
+            grouped = df_selected.groupby("BenefitSubType")[y_column].mean().reset_index()
+            fig = px.bar(
+                grouped,
+                x="BenefitSubType",
+                y=y_column,
+                text=y_column,
+                color="BenefitSubType",
+                title="Benefit Subtype Scores"
+            )
+            fig.update_layout(height=500)
+
+    # Format text and display chart
+    fig.update_traces(texttemplate='%{text:.2f}', textposition='outside')
+    st.plotly_chart(fig, use_container_width=True, config=plotly_config)
+
+
+
